@@ -24,6 +24,7 @@ require 'twilio-ruby'
 require 'localtunnel'
 
 require 'google/api_client'
+require 'yaml'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
@@ -41,4 +42,9 @@ twilio_config = YAML.load_file(APP_ROOT.join('config', 'twilio.yaml'))
 twilio_config.each do |name, setting|
   ENV[name] = setting 
   puts "#{name} = #{ENV[name]}"
+end
+
+google_config = YAML.load_file(APP_ROOT.join('config', 'google.yaml'))
+google_config.each do |name, setting|
+  ENV[name] = setting 
 end

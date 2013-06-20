@@ -1,10 +1,8 @@
 User Stories
 
-- User can connect to Google Calendar
 - User can pick dates when they are available
 - Dates are saved into the database
 
-- User can look through Google Contacts
 - User can select contacts (crushes) that they want to date
 - Contacts are added to the database for that user
 
@@ -15,4 +13,5 @@ User Stories
 ADDITIONAL
 - User can select places where they would like to go on a date
 - There is more intelligent interaction with the crushes
-
+- User can connect to Google Calendar
+- User can look through Google Contacts

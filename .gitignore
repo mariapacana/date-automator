@@ -26,3 +26,4 @@ bin/
 .env
 *.swp
 config/twilio.yaml
+config/google.yaml

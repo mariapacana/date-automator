@@ -1,19 +1,28 @@
 $(document).ready(function() {
   var datetimeTemplate = $('#datetime').html();
- 
- var addDate = function(dateButton){
-    dateButton.remove();
-    $('#datetime').append(datetimeTemplate);
-  };
 
-  var bindDate = function () {
-    $('#datetime').on('click', '.add_date', function(){
-      console.log('hey');
-      console.log($(this));
-      addDate($(this));
+  var addDate = function () {
+    $('#new_date_form').on('click', '.add_date', function(){
+      $(this).remove();
+      $('#datetime').append(datetimeTemplate);
     });
   };
 
-  bindDate();
+  var submitDates = function () {
+    $('#schedule_submit').on('click', function(e){
+      e.preventDefault();
+      data = $('#new_date_form').serialize();
+      console.log(data);
+      $.ajax({
+        url: "/schedule",
+        method: "POST",
+        data: data
+      });
+    });
+  };
+
+
+  addDate();
+  submitDates();
 });
 

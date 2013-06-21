@@ -1,0 +1,17 @@
+<div class='nav_bar'>
+  <a href='/' id="logo">
+    <span id="logo_mechanical">The Mechanical</span>
+    <span id="logo_pickup" >PICKUP</span>
+    <span id="logo_artist" >Artist</span>
+  </a>
+
+  <ul>
+    <li><a href='/schedule'>Schedule</a></li>
+    <li><a href='/crushes'>Crushes</a></li>
+    <li><a href='/user/<%= session[:user_id]%>'>Your Dates</a></li>
+    <li><a id='logout' href='/logout'>Log Out</a></li>
+    <li><a id='login' href='/login'>Login</a></li>
+    <li><a id='signup' href='/signup'>Sign Up</a></li>
+  </ul>
+
+</div>

@@ -1,0 +1,54 @@
+.nav_bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+}
+
+.nav_bar #logo {
+  float: left;
+  font-size: 1.5em;
+  padding-left: 30px;
+  text-decoration: none;
+}
+
+.nav_bar #logo_mechanical {
+  line-height: 50px;
+  font-family: 'Alegreya', serif;
+  color: white;
+}
+
+.nav_bar #logo_pickup {
+  line-height: 50px;
+  font-family: 'Orienta', sans-serif;
+  color: red;
+}
+
+.nav_bar #logo_artist {
+  line-height: 50px;
+  font-family: 'Alegreya', serif;
+  color: white;
+}
+
+.nav_bar ul {
+  list-style-type: none;
+  margin-right: 30px;
+  float: right;
+}
+
+.nav_bar ul li {
+  display: inline;
+  padding-left: 20px;  
+
+}
+
+.nav_bar ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav_bar ul li a:hover {
+  text-decoration: none;
+  color: red;
+}

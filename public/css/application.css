@@ -15,7 +15,8 @@ th {
 .main {
   margin: 90px auto 0 auto;
   width: 1000px;
-  font-size: 80%;
+  font-size: 70%;
+  font-family: 'Alegreya', serif;
 }
 
 #schedule, #crush h2 {

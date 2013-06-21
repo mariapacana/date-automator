@@ -9,6 +9,7 @@
 
 .nav_bar #logo {
   float: left;
+  height: 50px;
   font-size: 1.5em;
   padding-left: 30px;
   text-decoration: none;
@@ -34,17 +35,22 @@
 
 .nav_bar ul {
   list-style-type: none;
-  margin-right: 30px;
+  font-family: 'Alegreya', serif;
+  margin: 0 30px 0 0;
+  padding: 0;
   float: right;
 }
 
 .nav_bar ul li {
   display: inline;
+  height: 50px;
   padding-left: 20px;  
-
+  line-height: 50px;
+  vertical-align: bottom;
 }
 
 .nav_bar ul li a {
+  height: 50px;
   text-decoration: none;
   color: black;
 }

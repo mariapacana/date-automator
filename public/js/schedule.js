@@ -1,20 +1,19 @@
 $(document).ready(function() {
-  var datetimeTemplate = $('#datetime_template').html();
-
-  // USE EVENT DELEGATION HERE
-  var addDate = function(dateButton){
+  var datetimeTemplate = $('#datetime').html();
+ 
+ var addDate = function(dateButton){
     dateButton.remove();
-    datetime = $(datetimeTemplate);
-
     $('#datetime').append(datetimeTemplate);
   };
 
   var bindDate = function () {
-    $('.datetime').on('click', function(){
+    $('#datetime').on('click', '.add_date', function(){
+      console.log('hey');
+      console.log($(this));
       addDate($(this));
     });
-    // bindDate();
   };
 
+  bindDate();
 });
 

@@ -3,7 +3,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: black;
+  background-color: #ECF0F1;
+  box-shadow: 0px -4px 12px -4px #BDC3C7 inset;
 }
 
 .nav_bar #logo {
@@ -16,7 +17,7 @@
 .nav_bar #logo_mechanical {
   line-height: 50px;
   font-family: 'Alegreya', serif;
-  color: white;
+  color: black;
 }
 
 .nav_bar #logo_pickup {
@@ -28,7 +29,7 @@
 .nav_bar #logo_artist {
   line-height: 50px;
   font-family: 'Alegreya', serif;
-  color: white;
+  color: black;
 }
 
 .nav_bar ul {
@@ -45,7 +46,7 @@
 
 .nav_bar ul li a {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 .nav_bar ul li a:hover {

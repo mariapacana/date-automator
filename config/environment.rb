@@ -38,13 +38,13 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
 
-twilio_config = YAML.load_file(APP_ROOT.join('config', 'twilio.yaml'))
-twilio_config.each do |name, setting|
-  ENV[name] = setting 
-  puts "#{name} = #{ENV[name]}"
-end
+# twilio_config = YAML.load_file(APP_ROOT.join('config', 'twilio.yaml'))
+# twilio_config.each do |name, setting|
+#   ENV[name] = setting 
+#   puts "#{name} = #{ENV[name]}"
+# end
 
-google_config = YAML.load_file(APP_ROOT.join('config', 'google.yaml'))
-google_config.each do |name, setting|
-  ENV[name] = setting 
-end
+# google_config = YAML.load_file(APP_ROOT.join('config', 'google.yaml'))
+# google_config.each do |name, setting|
+#   ENV[name] = setting 
+# end

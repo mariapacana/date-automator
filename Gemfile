@@ -19,6 +19,9 @@ gem 'shotgun'
 
 gem 'google-api-client'
 
+gem 'twilio-ruby'
+gem 'localtunnel'
+
 group :test do
   gem 'faker'
   gem 'rspec'

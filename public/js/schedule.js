@@ -12,7 +12,6 @@ $(document).ready(function() {
     $('#schedule_submit').on('click', function(e){
       e.preventDefault();
       data = $('#new_date_form').serialize();
-      console.log(data);
       $.ajax({
         url: "/schedule",
         method: "POST",

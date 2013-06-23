@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.string :email
       t.string :twilio_phone
+      t.string :password_hash
     end
   end
 end

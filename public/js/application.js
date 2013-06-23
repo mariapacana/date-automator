@@ -1,7 +1,9 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+  $('#login').on('click', function () {
+    $('#login_form').show();
+  });
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  $('#signup').on('click', function () {
+    $('#signup_form').show();
+  });
 });

@@ -1,4 +1,21 @@
 <div class="main">
-
-
+  <div id="login_form" class="auth">
+    <h2>Log In</h2>
+      <form action = "/login" method="post">
+        <input class="login" name="user[email]" type="text" placeholder="jon@thewall.com"><br>
+        <input class="login" name="user[password]" type="text" placeholder="Twilio Phone, e.g. 415-999-9999"><br>
+        <input type="submit" value="Submit">
+      </form>
+  </div>
+  <div id="signup_form" class="auth">
+    <h2>Sign Up</h2>
+      <form action="/signup" method="post">
+        <input class="signup" name="user[first_name]" type="text" placeholder="Jon"><br>        
+        <input class="signup" name="user[last_name]" type="text" placeholder="Snow"><br>
+        <input class="signup" name="user[email]" type="text" placeholder="jon@thewall.com"><br>
+        <input class="signup" name="user[twilio_phone]" type="text" placeholder="Twilio Phone, e.g. 415-999-9999">
+        <input class="signup" name="user[password]" type="text" placeholder="jon@thewall.com"><br>     
+        <input type="submit" value="Submit">
+      </form>
+  </div>
 </div>

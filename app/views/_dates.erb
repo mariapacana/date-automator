@@ -11,6 +11,14 @@
 
   <div id="current_date_div">
     <h2>Your available dates</h2>
-
+      <table>
+        <% currentuser.free_times.each do |time|%>
+          <tr>
+            <td><%= time.free_date %></td>
+            <td><%= time.start_time_formatted %></td>
+            <td><%= time.end_time_formatted %></td>
+          </tr> 
+        <% end %>
+      </table>
   </div>
 </div>

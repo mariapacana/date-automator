@@ -1,5 +1,5 @@
 post '/login' do
-  user = User.authenticate(params[:email], params[:password])
+  user = User.authenticate(params[:user])
   session[:user_id] = user.id if user
   redirect '/'
 end

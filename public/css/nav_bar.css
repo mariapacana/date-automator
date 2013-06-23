@@ -3,34 +3,35 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #ECF0F1;
+  background-image: linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
+  background-image: -o-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
+  background-image: -moz-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
+  background-image: -webkit-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
+  background-image: -ms-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
+
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.01, rgb(194,194,194)),
+    color-stop(0.51, rgb(235,235,235))
+  );
   box-shadow: 0px -4px 12px -4px #BDC3C7 inset;
 }
 
 .nav_bar #logo {
   float: left;
   height: 50px;
+  font-family: 'Roboto', sans-serif;
+  color: black;
   font-size: 1.5em;
   padding-left: 30px;
   text-decoration: none;
 }
 
-.nav_bar #logo_mechanical {
+.nav_bar #logo_date {
   line-height: 50px;
-  font-family: 'Alegreya', serif;
-  color: black;
-}
-
-.nav_bar #logo_pickup {
-  line-height: 50px;
-  font-family: 'Orienta', sans-serif;
-  color: red;
-}
-
-.nav_bar #logo_artist {
-  line-height: 50px;
-  font-family: 'Alegreya', serif;
-  color: black;
+  color: #FF1493;
 }
 
 .nav_bar ul {
@@ -52,10 +53,11 @@
 .nav_bar ul li a {
   height: 50px;
   text-decoration: none;
+  font-family: 'Roboto', sans-serif;
   color: black;
 }
 
 .nav_bar ul li a:hover {
   text-decoration: none;
-  color: red;
+  color: #FF1493;
 }

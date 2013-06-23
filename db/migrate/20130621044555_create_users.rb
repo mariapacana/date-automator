@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :email
-      t.string :twilio_phone
+      t.string :phone
       t.string :password_hash
     end
   end

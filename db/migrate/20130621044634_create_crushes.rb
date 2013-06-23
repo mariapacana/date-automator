@@ -4,6 +4,8 @@ class CreateCrushes < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :phone
+      t.boolean :interested
+      t.boolean :date_scheduled
     end
   end
 end

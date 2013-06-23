@@ -1,21 +1,28 @@
-<div class="main">
-  <div id="login_form" class="auth">
-    <h2>Log In</h2>
-      <form action = "/login" method="post">
-        <input class="login" name="user[email]" type="text" placeholder="jon@thewall.com"><br>
-        <input class="login" name="user[password]" type="text" placeholder="Twilio Phone, e.g. 415-999-9999"><br>
-        <input type="submit" value="Submit">
-      </form>
+<div id="index_main" class="main">
+  <div id="tagline">
+    <h2><span class="date">DATE</span> AUTOMATOR</h2>
+    <h3>Some make the world a better place.</h3>
+    <h3>I just try to get you dates.</h3>
   </div>
-  <div id="signup_form" class="auth">
-    <h2>Sign Up</h2>
-      <form action="/signup" method="post">
-        <input class="signup" name="user[first_name]" type="text" placeholder="Jon"><br>        
-        <input class="signup" name="user[last_name]" type="text" placeholder="Snow"><br>
-        <input class="signup" name="user[email]" type="text" placeholder="jon@thewall.com"><br>
-        <input class="signup" name="user[twilio_phone]" type="text" placeholder="Twilio Phone, e.g. 415-999-9999">
-        <input class="signup" name="user[password]" type="text" placeholder="jon@thewall.com"><br>     
-        <input type="submit" value="Submit">
-      </form>
+  <div id="auth">
+    <div id="login_form" class="auth">
+      <h2>LOG IN</h2>
+        <form action = "/login" method="post">
+          <input class="login" name="user[email]" type="text" placeholder="jon@thewall.com"><br>
+          <input class="login" name="user[password]" type="text" placeholder="Twilio #, e.g. 415-999-9999"><br>
+          <input type="submit" value="LOG IN">
+        </form>
+    </div>
+    <div id="signup_form" class="auth">
+      <h2>SIGN UP</h2>
+        <form action="/signup" method="post">
+          <input class="signup" name="user[first_name]" type="text" placeholder="Jon"><br>        
+          <input class="signup" name="user[last_name]" type="text" placeholder="Snow"><br>
+          <input class="signup" name="user[email]" type="text" placeholder="jon@thewall.com"><br>
+          <input class="signup" name="user[twilio_phone]" type="text" placeholder="Twilio #, e.g. 415-999-9999">
+          <input class="signup" name="user[password]" type="text" placeholder="Password"><br>     
+          <input type="submit" value="SIGN UP">
+        </form>
+    </div>
   </div>
 </div>

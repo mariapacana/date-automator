@@ -51,7 +51,7 @@ SCHEMA
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="196" y="255" name="users">
+</datatypes><table x="118" y="287" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -64,42 +64,46 @@ SCHEMA
 <row name="email" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="twilio_phone" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<row name="phone" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="796" y="239" name="crushes">
+<table x="575" y="266" name="crushes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="firstname" null="1" autoincrement="0">
+<row name="id_users" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="firstname" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <row name="lastname" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <row name="phone" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="interested?" null="1" autoincrement="0">
+<datatype>BINARY</datatype>
+<default>NULL</default></row>
+<row name="date_scheduled?" null="1" autoincrement="0">
+<datatype>BINARY</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="505" y="14" name="freetimes">
+<table x="345" y="416" name="freetimes">
 <row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="date" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="start_time" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="end_time" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>DATETIME</datatype>
 <default>NULL</default></row>
 <row name="id_users" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -113,7 +117,7 @@ SCHEMA
 <part>id</part>
 </key>
 </table>
-<table x="510" y="302" name="exchanges">
+<table x="348" y="96" name="exchanges">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -125,15 +129,23 @@ SCHEMA
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="crushes" row="id" />
 </row>
-<row name="sent_text" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<row name="request_text" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <row name="response_text" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="type" null="1" autoincrement="0">
+<datatype>ENUM</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="1" autoincrement="0">
+<datatype>TIMESTAMP</datatype>
+<default>NULL</default></row>
+<row name="updated_at" null="1" autoincrement="0">
+<datatype>TIMESTAMP</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
 </sql>
-

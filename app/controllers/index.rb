@@ -7,11 +7,12 @@ get '/schedule' do
 end
 
 post '/schedule' do 
-  start_time = start_time(params[:free_date], params[:start_time])
-  end_time = end_time(params[:free_date], params[:end_time])
-  currentuser.free_times.create(free_date: params[:free_date],
-                                start_time: start_time,
-                                end_time: end_time)
+  params.each do |index, freetime|
+    start_time = start_time(freetime[:free_date], freetime[:start_time])
+    currentuser.free_times.create(start_time: start_time)
+  end
+  @time = currentuser.free_times.last
+  erb :_free_dates
 end
 
 get '/crushes' do

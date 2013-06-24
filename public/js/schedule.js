@@ -1,10 +1,22 @@
 $(document).ready(function() {
   var datetimeTemplate = $('#datetime').html();
+  var index = 0;
+
+  var indexDate = function (num){
+    return num.toString() + '[free_date]';
+  };
+
+  var indexTime = function (num){
+    return num.toString() + '[start_time]';
+  };
 
   var addDate = function () {
     $('#new_date_form').on('click', '.add_date', function(){
       $(this).remove();
       $('#datetime').append(datetimeTemplate);
+      index++;
+      $('#datetime input').eq(-1).attr('name', indexTime(index));
+      $('#datetime input').eq(-2).attr('name', indexDate(index));
     });
   };
 
@@ -16,10 +28,11 @@ $(document).ready(function() {
         url: "/schedule",
         method: "POST",
         data: data
+      }).done(function(response){
+        $('#current_date_div table').append(response);
       });
     });
   };
-
 
   addDate();
   submitDates();

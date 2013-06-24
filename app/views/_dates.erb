@@ -14,9 +14,7 @@
       <table>
         <% currentuser.free_times.each do |time|%>
           <tr>
-            <td><%= time.free_date %></td>
             <td><%= time.start_time_formatted %></td>
-            <td><%= time.end_time_formatted %></td>
           </tr> 
         <% end %>
       </table>

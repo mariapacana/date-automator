@@ -7,6 +7,10 @@ get '/schedule' do
   erb :_dates
 end
 
+get '/about' do
+  erb :about
+end
+
 post '/schedule' do 
   p params
   params.each do |index, freetime|

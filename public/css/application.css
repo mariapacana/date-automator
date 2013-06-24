@@ -45,3 +45,11 @@ table {
   font-size: 150%;
 }
 
+.about {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.about p {
+  font-size: 150%;
+}

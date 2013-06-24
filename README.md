@@ -29,5 +29,6 @@ Stretch:
 
 * User can select places where they would like to go on a date
 * There is more intelligent interaction with the crushes
-* User can connect to Google Calendar
-* User can look through Google Contacts
+* User can connect to Google Calendar to find free times
+* User can look through Google Contacts to source crushes
+* Dates are automatically scheduled on Google Calendar

@@ -6,6 +6,7 @@ class CreateCrushes < ActiveRecord::Migration
       t.string :phone
       t.boolean :interested
       t.boolean :date_scheduled
+      t.references :user
     end
   end
 end

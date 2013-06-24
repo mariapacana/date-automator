@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :exchanges
+  has_many :crushes
   has_many :free_times
 
   include BCrypt

@@ -1,0 +1,39 @@
+#new_crush_div {
+  width: 600px;
+  margin: 0 auto;
+}
+
+#all_crushes {
+  width: 600px;
+  margin: 0 auto;
+}
+
+#all_crushes table {
+  border: 2px solid #EBEBEB;
+  padding: 8px;
+}
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 200%;
+}
+
+#all_crushes table {
+  background-color: #EBEBEB;
+}
+
+#all_crushes table td, th {
+  border: 2px solid #EBEBEB;
+  padding: 4px;
+  margin: 0;
+}
+
+#all_crushes th {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+#all_crushes td {
+  background-color: white;
+  text-align: right;
+}

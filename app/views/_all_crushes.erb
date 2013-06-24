@@ -1,0 +1,22 @@
+<div id="all_crushes">
+  <h2>YOUR CRUSHES</h2>
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Phone</th>
+      <th>Interested?</th>
+      <th>Date Scheduled</th>
+    </tr>
+    <% @crushes.each do |crush|%>
+    <tr>
+      <td><%= crush.first_name %></td>
+      <td><%= crush.last_name %></td>
+      <td><%= crush.phone %></td>
+      <td><%= crush.interested %></td>
+      <td><%= crush.date_scheduled %></td>
+    </tr> 
+    <% end %>
+  </table>
+  </div>
+</div>

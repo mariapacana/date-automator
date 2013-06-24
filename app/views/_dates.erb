@@ -9,14 +9,7 @@
     </form>
   </div>
 
-  <div id="current_date_div">
-    <h2>Your available dates</h2>
-      <table>
-        <% currentuser.free_times.each do |time|%>
-          <tr>
-            <td><%= time.start_time_formatted %></td>
-          </tr> 
-        <% end %>
-      </table>
+  <div id="all_free_dates">
+    <%= erb :_all_free_dates %>
   </div>
 </div>

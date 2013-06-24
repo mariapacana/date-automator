@@ -2,21 +2,22 @@ $(document).ready(function() {
   var datetimeTemplate = $('#datetime').html();
   var index = 0;
 
-  var indexDate = function (num){
-    return num.toString() + '[free_date]';
+  var indexedField = function (num, type){
+    return num.toString() + '[' + type + ']';
   };
 
-  var indexTime = function (num){
-    return num.toString() + '[start_time]';
+  var addIndexToFreeTime = function() {
+    index++;
+    console.log(index);
+    $('#datetime input').eq(-1).attr('name', indexedField(index, 'free_date'));
+    $('#datetime input').eq(-2).attr('name', indexedField(index, 'start_time'));
   };
 
   var addDate = function () {
     $('#new_date_form').on('click', '.add_date', function(){
       $(this).remove();
       $('#datetime').append(datetimeTemplate);
-      index++;
-      $('#datetime input').eq(-1).attr('name', indexTime(index));
-      $('#datetime input').eq(-2).attr('name', indexDate(index));
+      addIndexToFreeTime();
     });
   };
 
@@ -29,7 +30,8 @@ $(document).ready(function() {
         method: "POST",
         data: data
       }).done(function(response){
-        $('#current_date_div table').append(response);
+        $('#all_free_dates').replaceWith(response);
+        $('#new_date_form').trigger('reset');
       });
     });
   };

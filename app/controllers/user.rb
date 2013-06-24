@@ -15,3 +15,6 @@ get '/logout' do
   redirect '/'
 end
 
+get '/user/:user_id' do
+  erb :not_done
+end

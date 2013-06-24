@@ -1,10 +1,14 @@
-<div class="main">
-  <div id="new_date_div">
-    <h2>Crushes</h2>
+<div id="crush_main" class="main">
+  <div id="new_crush_div">
+    <h2>ADD CRUSHES</h2>
 
-    <form class="crushes" action="/crushes" method="post">
+    <form id="new_crush_form">
       <%= erb :_crush %>
-      <input type="submit" value="Submit">
+      <input id="crushes_submit" type="submit" value="Submit">
     </form>
+  </div>
+
+  <div id="all_crushes">
+    <%= erb :_all_crushes %>
   </div>
 </div>

@@ -28,3 +28,5 @@ group :test do
 end
 
 gem 'bcrypt-ruby'
+
+ruby '1.9.3'

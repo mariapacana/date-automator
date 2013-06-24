@@ -1,5 +1,7 @@
 body {
+  height: 100%;
   background-color: #FCFCFC;
+  padding: 0;
 }
 
 .container {
@@ -19,6 +21,7 @@ th {
 
 .main {
   margin: 90px auto 0 auto;
+  height: 600px;
   width: 1000px;
   font-size: 70%;
   font-family: 'Alegreya', serif;
@@ -65,6 +68,17 @@ button {
 input[type=submit]:hover, button:hover {
   background-color: #FF1493;
   border: #FF1493;
+}
+
+#about {
+  color: black;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+#about a {
+  color: #FF1493;
+  font-size: 150%;
 }
 
 .about {

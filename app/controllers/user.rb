@@ -1,13 +1,24 @@
 post '/login' do
-  user = User.authenticate(params[:user])
-  session[:user_id] = user.id if user
-  redirect '/'
+  userinfo = params[:user]
+  @errors = []
+
+  if userinfo[:email].blank? || userinfo[:password].blank?
+    @errors << "Email cannot be blank" if userinfo[:email].blank?
+    @errors << "Password cannot be blank" if userinfo[:password].blank?
+  else
+    user = User.authenticate(params[:user])
+    session[:user_id] = user.id if user
+  end
+
+  erb :index
 end
 
 post '/signup' do
   user = User.create(params[:user])
-  session[:user_id] = user.id
-  redirect '/'
+  @errors = user.errors.full_messages
+  session[:user_id] = user.id if user
+
+  erb :index
 end
 
 get '/logout' do

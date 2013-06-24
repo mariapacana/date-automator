@@ -15,16 +15,17 @@
           </form>
       </div>
       <div id="signup_form" class="auth">
-        <h2>SIGN UP</h2>
-          <form action="/signup" method="post">
-            <input class="signup" name="user[first_name]" type="text" placeholder="Jon"><br>        
-            <input class="signup" name="user[last_name]" type="text" placeholder="Snow"><br>
-            <input class="signup" name="user[email]" type="text" placeholder="jon@thewall.com"><br>
-            <input class="signup" name="user[phone]" type="text" placeholder="Phone #, e.g. 415-999-9999">
-            <input class="signup" name="user[password]" type="password" placeholder="Password"><br>     
-            <input type="submit" value="SIGN UP">
-          </form>
+      <h2>SIGN UP</h2>
+        <form action="/signup" method="post">
+          <input class="signup" name="user[first_name]" type="text" placeholder="Jon"><br>        
+          <input class="signup" name="user[last_name]" type="text" placeholder="Snow"><br>
+          <input class="signup" name="user[email]" type="text" placeholder="jon@thewall.com"><br>
+          <input class="signup" name="user[phone]" type="text" placeholder="Phone #, e.g. 415-999-9999">
+          <input class="signup" name="user[password]" type="password" placeholder="Password"><br>     
+          <input type="submit" value="SIGN UP">
+        </form>
       </div>
+          <%= erb :_errors %>
     </div>
   </div>
 <% end %>

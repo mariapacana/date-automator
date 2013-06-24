@@ -29,18 +29,18 @@
 }
 
 .auth {
-  background-image: linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
-  background-image: -o-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
-  background-image: -moz-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
-  background-image: -webkit-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
-  background-image: -ms-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
+  background-image: linear-gradient(bottom, rgb(194,194,194) 1%, rgb(149, 165, 166) 51%);
+  background-image: -o-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(149, 165, 166) 51%);
+  background-image: -moz-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(149, 165, 166) 51%);
+  background-image: -webkit-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(149, 165, 166) 51%);
+  background-image: -ms-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(149, 165, 166) 51%);
 
   background-image: -webkit-gradient(
     linear,
     left bottom,
     left top,
     color-stop(0.01, rgb(194,194,194)),
-    color-stop(0.51, rgb(235,235,235))
+    color-stop(0.51, rgb(165,149,166))
   );
   
   border-radius: 15px;
@@ -66,7 +66,7 @@
 
 .auth form input {
   height: 20px;
-  font-size: 150%;
+  font-size: 130%;
   margin-bottom: 2px;
   width: 250px;
 }

@@ -1,0 +1,11 @@
+#new_date_div {
+  float: left;
+  width: 400px;
+  margin-left: 100px;
+}
+
+#all_free_dates {
+  float: right;
+  width: 500px;
+}
+

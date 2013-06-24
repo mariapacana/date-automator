@@ -1,10 +1,21 @@
 #new_crush_div {
-  width: 600px;
-  margin: 0 auto;
+  width: 700px;
+  margin: 0 auto 40px auto;
+}
+
+#crush input {
+  height: 20px;
+  font-size: 130%;
+  margin-bottom: 2px;
+  width: 150px;
+}
+
+#crush button {
+  margin-bottom: 2px;
 }
 
 #all_crushes {
-  width: 600px;
+  width: 700px;
   margin: 0 auto;
 }
 
@@ -13,27 +24,25 @@
   padding: 8px;
 }
 
-h2 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 200%;
-}
-
 #all_crushes table {
   background-color: #EBEBEB;
 }
 
 #all_crushes table td, th {
   border: 2px solid #EBEBEB;
+  width: 150px;
   padding: 4px;
   margin: 0;
 }
 
 #all_crushes th {
   font-family: 'Roboto', sans-serif;
+  font-size: 120%;
   text-align: center;
 }
 
 #all_crushes td {
   background-color: white;
   text-align: right;
+  font-size: 130%;
 }

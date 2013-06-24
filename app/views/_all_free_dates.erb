@@ -1,10 +1,8 @@
 <div id="all_free_dates">
-  <h2>Your available dates</h2>
-  <table>
+  <h2>ALL TIMES</h2>
+  <ul>
     <% @times.each do |time|%>
-      <tr>
-        <td><%= time.start_time_formatted %></td>
-      </tr> 
+        <li><%= time.start_time_formatted %></li>
     <% end %>
-  </table>
+  </li>
 </div>

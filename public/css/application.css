@@ -24,25 +24,47 @@ th {
   font-family: 'Alegreya', serif;
 }
 
-#schedule, #crush h2 {
-  padding: 0;
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 180%;
+  padding: 0 0 10px 0;
   margin: 0;
 }
 
-#new_date_div {
-  float: left;
-  width: 500px;
-  left: 0;
-}
-
-#current_date_div {
-  float: left;
-  width: 500px;
-}
-
-
-table {
+td {
   font-size: 150%;
+}
+
+ul {
+  padding-top: 0;
+  margin: 0;
+}
+
+li {
+  font-size: 150%;
+  padding: 0;
+}
+
+input[type=submit], button   {
+  width: 100px;
+  height: 25px;
+  font-size: 120%;
+  padding: 2px;
+  text-align: center;
+  line-height: 20px;
+  color: white;
+  background-color: #95a5a6;
+  border: 1px solid #95a5a6;
+  border-radius: 5px;
+}
+
+button {
+  display: inline;
+}
+
+input[type=submit]:hover, button:hover {
+  background-color: #FF1493;
+  border: #FF1493;
 }
 
 .about {

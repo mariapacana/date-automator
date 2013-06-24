@@ -3,6 +3,12 @@ class User < ActiveRecord::Base
   has_many :crushes
   has_many :free_times
 
+  validates :first_name, :last_name, :email, :phone, :password_hash, :presence => true
+  validates :email, :format => { :with => /.*@.*\..*/,
+    :message => "must be valid" }
+  validates :phone, :format => { :with => /1?(-|.)?\d{3}(-|.)?\d{3}(-|.)?\d{4}/,
+    :message => "must be valid" }
+
   include BCrypt
 
   def password

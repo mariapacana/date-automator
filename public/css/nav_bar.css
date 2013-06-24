@@ -3,18 +3,18 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-image: linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
-  background-image: -o-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
-  background-image: -moz-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
-  background-image: -webkit-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
-  background-image: -ms-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(235,235,235) 51%);
+  background-image: linear-gradient(bottom, rgb(194,194,194) 1%, rgb(149,165,166) 51%);
+  background-image: -o-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(149,165,166) 51%);
+  background-image: -moz-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(149,165,166) 51%);
+  background-image: -webkit-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(149,165,166) 51%);
+  background-image: -ms-linear-gradient(bottom, rgb(194,194,194) 1%, rgb(149,165,166) 51%);
 
   background-image: -webkit-gradient(
     linear,
     left bottom,
     left top,
     color-stop(0.01, rgb(194,194,194)),
-    color-stop(0.51, rgb(235,235,235))
+    color-stop(0.51, rgb(149,165,166))
   );
   box-shadow: 0px -4px 12px -4px #BDC3C7 inset;
 }
@@ -55,6 +55,7 @@
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
   color: black;
+  font-size: 70%;
 }
 
 .nav_bar ul li a:hover {

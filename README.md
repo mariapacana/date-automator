@@ -1,7 +1,7 @@
-Mission:
+**Mission**
 Date Automator takes the work out of scheduling dates! Using Twilio, the Automator will message your crushes and confirms whether they would like to date you. It then schedules a date with them at a time when you are available.
 
-User Stories
+**User Stories**
 
 Completed:
 * User can log in and log out 

@@ -1,6 +1,5 @@
 class Crush < ActiveRecord::Base
-  has_many :exchanges
+  has_many :messages
   belongs_to :user
 
-  
 end

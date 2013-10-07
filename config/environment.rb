@@ -41,6 +41,7 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 require APP_ROOT.join('config', 'database')
 
 # twilio_config = YAML.load_file(APP_ROOT.join('config', 'twilio.yaml'))
+# p twilio_config
 # twilio_config.each do |name, setting|
 #   ENV[name] = setting 
 #   puts "#{name} = #{ENV[name]}"

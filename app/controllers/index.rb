@@ -2,6 +2,26 @@ get '/' do
   erb :index
 end
 
+get '/send' do
+  #use send_sms here
+end
+
+post '/receive' do
+  # need to massage phone number into a standard format
+  p params
+  
+  @crush_phone = params[:From]
+  @message =  params[:Body]
+
+  @crush = Crush.find_by_phone(@crush_phone)
+  if (@message == "Yes")
+    @crush.update_attributes(interested: true)
+  else
+    @crush.update_attributes(interested: false)
+  end
+
+end
+ 
 get '/schedule' do
   @times = currentuser.free_times
   erb :_dates
@@ -27,9 +47,13 @@ get '/crushes' do
 end
 
 post '/crushes' do
+  hello = "Hi there! Are you interested in #{currentuser.first_name}?"
   params.each do |index, crush|
-    currentuser.crushes.create(crush)
+    send_sms("+16506459949", crush["phone"], hello)
+    @new_crush = currentuser.crushes.create(crush)
+    currentuser.messages.create(body: hello, from_user: true, crush: @new_crush)
   end
+
   @crushes = currentuser.crushes
   erb :_all_crushes, {:layout => false}
 end

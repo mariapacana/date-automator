@@ -21,11 +21,11 @@ helpers do
     twiml.text
   end
 
-  def call_phone(phone)
-    url = ENV['TUNNEL']+'/call'
-    client = new_client
-    client.account.calls.create(:from => current_user.phone, :to => phone, :url => url)
-  end
+  # def call_phone(phone)
+  #   url = ENV['TUNNEL']+'/call'
+  #   client = new_client
+  #   client.account.calls.create(:from => current_user.phone, :to => phone, :url => url)
+  # end
 
   def standardize_phone(phone)
     strip_phone(phone)

@@ -15,6 +15,8 @@ gem 'activerecord'
 
 gem 'rake'
 
+gem 'mini_fb'
+
 gem 'shotgun'
 
 gem 'google-api-client'

@@ -27,3 +27,4 @@ bin/
 *.swp
 config/twilio.yaml
 config/google.yaml
+config/facebook.yaml

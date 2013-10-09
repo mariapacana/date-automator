@@ -2,9 +2,8 @@ get '/' do
   erb :index
 end
 
-get '/send' do
-  #use send_sms here
-end
+# get '/send' do
+# end
 
 post '/receive' do
   # need to massage phone number into a standard format
@@ -57,4 +56,3 @@ post '/crushes' do
   @crushes = currentuser.crushes
   erb :_all_crushes, {:layout => false}
 end
-

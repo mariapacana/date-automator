@@ -13,3 +13,6 @@ configure do
 end
 
 run Sinatra::Application
+
+# Trying to have more detailed logs on heroku
+$stdout.sync = true  

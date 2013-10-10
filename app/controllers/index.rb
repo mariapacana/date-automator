@@ -9,12 +9,11 @@ get '/oauth_tofb' do
   puts "Hello, logz"
   puts params
   redirect to(display_oauth)
-  # redirect_url = display_oauth
-  # redirect to(redirect_url)
 end
 
 get '/oauth_fromfb' do
   puts "hey there"
+  callback_url =  "http://date-automator.herokuapp.com/oauth_fromfb"
   @oauth = Koala::Facebook::OAuth.new(ENV['FB_ID'], ENV['FB_SECRET'], callback_url)
   p token = @oauth.get_access_token(params[:code])
 end

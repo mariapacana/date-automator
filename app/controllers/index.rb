@@ -5,6 +5,10 @@ end
 # get '/send' do
 # end
 
+get '/oauth' do
+  display_oauth
+end
+
 post '/receive' do
   # need to massage phone number into a standard format
   p params

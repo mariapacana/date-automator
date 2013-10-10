@@ -1,4 +1,15 @@
-source :rubygems
+source "https://rubygems.org"
+
+# Facebook integration
+gem 'mini_fb'
+gem 'koala'
+
+# Twilio integration
+gem 'twilio-ruby'
+gem 'localtunnel'
+
+# Google integration
+gem 'google-api-client'
 
 # PostgreSQL driver
 gem 'pg'
@@ -10,22 +21,16 @@ gem 'sinatra-contrib'
 # Use Thin for our web server
 gem 'thin'
 
+# Authentication
+gem 'bcrypt-ruby'
+
 gem 'activesupport'
 gem 'activerecord'
 
 gem 'rake'
 
-gem 'mini_fb'
-
 gem 'shotgun'
 
-gem 'google-api-client'
-
-gem 'twilio-ruby'
-gem 'localtunnel'
-
 gem 'rspec'
-
-gem 'bcrypt-ruby'
 
 ruby '1.9.3'

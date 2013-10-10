@@ -5,7 +5,17 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
-# Require gems we care about
+# Facebook integration
+require 'mini_fb'
+require 'koala'
+
+# Twilio integration
+require 'twilio-ruby'
+require 'localtunnel'
+
+# Google integration
+require 'google/api_client'
+
 require 'rubygems'
 
 require 'uri'
@@ -19,12 +29,7 @@ require 'sinatra'
 require "sinatra/reloader" if development?
 
 require 'erb'
-require 'mini_fb'
 
-require 'twilio-ruby'
-require 'localtunnel'
-
-require 'google/api_client'
 require 'yaml'
 
 require 'bcrypt'
@@ -41,14 +46,19 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
 
-twilio_config = YAML.load_file(APP_ROOT.join('config', 'twilio.yaml'))
-p twilio_config
-twilio_config.each do |name, setting|
-  ENV[name] = setting 
-  puts "#{name} = #{ENV[name]}"
+unless (ENV['TW_SID'] || ENV['TW_TOKEN'])
+	twilio_config = YAML.load_file(APP_ROOT.join('config', 'twilio.yaml'))
+	p twilio_config
+	twilio_config.each do |name, setting|
+	  ENV[name] = setting 
+	  puts "#{name} = #{ENV[name]}"
+	end
 end
 
-# google_config = YAML.load_file(APP_ROOT.join('config', 'google.yaml'))
-# google_config.each do |name, setting|
-#   ENV[name] = setting 
-# end
+unless (ENV['FB_SID'] || ENV['FB_TOKEN'])
+	fb_config = YAML.load_file(APP_ROOT.join('config', 'facebook.yaml'))
+	fb_config.each do |name, setting|
+	  ENV[name] = setting 
+	  puts "#{name} = #{ENV[name]}"
+	end
+end

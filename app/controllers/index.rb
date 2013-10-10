@@ -5,9 +5,15 @@ end
 # get '/send' do
 # end
 
-get '/oauth' do
+get '/oauth_tofb' do
   puts "Hello, logz"
   display_oauth
+  # redirect_url = display_oauth
+  # redirect to(redirect_url)
+end
+
+get '/oauth_fromfb' do
+  puts "hey there"
 end
 
 post '/receive' do

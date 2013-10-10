@@ -14,8 +14,8 @@ get '/oauth_tofb' do
 end
 
 get '/oauth_fromfb' do
-  puts params
   puts "hey there"
+  p token = @oauth.get_access_token(params[:code])
 end
 
 post '/receive' do

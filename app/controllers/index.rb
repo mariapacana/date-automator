@@ -18,10 +18,16 @@ get '/oauth_fromfb' do
   p "FB_ID #{ENV['FB_ID']}"
   p "FB_TOKEN #{ENV['FB_TOKEN']}"
 
+  fb_request = "307476?fields=id,friends.fields(picture.height(200))"
+
   callback_url = "http://date-automator.herokuapp.com/oauth_fromfb"
 
   @oauth = Koala::Facebook::OAuth.new(ENV['FB_ID'], ENV['FB_TOKEN'], callback_url)
   p token = @oauth.get_access_token(params[:code])
+
+  @graph = Koala::Facebook::API.new(token) 
+  p @graph.get_object(fb_request)
+
 end
 
 post '/receive' do

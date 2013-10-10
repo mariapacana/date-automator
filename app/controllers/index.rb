@@ -15,6 +15,7 @@ end
 
 get '/oauth_fromfb' do
   puts "hey there"
+  @oauth = Koala::Facebook::OAuth.new(ENV['FB_ID'], ENV['FB_SECRET'], callback_url)
   p token = @oauth.get_access_token(params[:code])
 end
 

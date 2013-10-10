@@ -16,11 +16,11 @@ get '/oauth_fromfb' do
 
   p "params[code] #{params[:code]}"
   p "FB_ID #{ENV['FB_ID']}"
-  p "FB_SECRET #{ENV['FB_SECRET']}"
+  p "FB_TOKEN #{ENV['FB_TOKEN']}"
 
   callback_url = "http://date-automator.herokuapp.com/oauth_fromfb"
 
-  @oauth = Koala::Facebook::OAuth.new(ENV['FB_ID'], ENV['FB_SECRET'], callback_url)
+  @oauth = Koala::Facebook::OAuth.new(ENV['FB_ID'], ENV['FB_TOKEN'], callback_url)
   p token = @oauth.get_access_token(params[:code])
 end
 

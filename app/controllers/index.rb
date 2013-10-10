@@ -7,12 +7,14 @@ end
 
 get '/oauth_tofb' do
   puts "Hello, logz"
-  display_oauth
+  puts params
+  redirect to(display_oauth)
   # redirect_url = display_oauth
   # redirect to(redirect_url)
 end
 
 get '/oauth_fromfb' do
+  puts params
   puts "hey there"
 end
 

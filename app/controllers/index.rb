@@ -6,6 +6,7 @@ end
 # end
 
 get '/oauth' do
+  puts "Hello, logz"
   display_oauth
 end
 

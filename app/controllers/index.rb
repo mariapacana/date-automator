@@ -26,8 +26,9 @@ get '/oauth_fromfb' do
   p token = @oauth.get_access_token(params[:code])
 
   @graph = Koala::Facebook::API.new(token) 
-  p @graph.get_object(fb_request)
-
+  object = @graph.get_object(fb_request)
+  p object.to_json
+  
 end
 
 post '/receive' do

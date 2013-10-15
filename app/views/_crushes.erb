@@ -2,7 +2,9 @@
   <div id="new_crush_div">
     <h2>ADD CRUSHES</h2>
 
-    <button value="Add Facebook Contacts"><a href="/oauth_tofb"></a></button>
+    <form method="get" action="/oauth_tofb">
+      <input value="Add Facebook Contacts" type="submit" />
+    </form>
 
     <form id="new_crush_form">
       <%= erb :_crush %>

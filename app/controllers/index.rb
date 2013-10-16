@@ -11,7 +11,7 @@ get '/oauth_google' do
   client.authorization.redirect_uri = ENV['G_CALLBACK']
   client.authorization.scope = ENV['G_CONTACTS_SCOPE']
   p "AUTHORIZATION URI!!........................."
-  redirect to(client.authorization.authorization_uri)
+  redirect client.authorization.authorization_uri
 end
 
 # get '/oauth2callback' do

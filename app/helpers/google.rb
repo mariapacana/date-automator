@@ -1,6 +1,6 @@
 helpers do
 
-	def initialize_client_and_get_callback
+	def initialize_client
 		client = Google::APIClient.new((options = 
 																	 {application_name: "Date Automator", 
 																		application_version: "1"}))
@@ -8,9 +8,10 @@ helpers do
     client.authorization.client_secret = ENV['G_SECRET']
     client.authorization.redirect_uri = ENV['G_CALLBACK']
 		client.authorization.scope = ENV['G_CONTACTS_SCOPE']
+		return client
 	end
 
-	def obtain_access_token(client)
+	def obtain_callback_url(client)
     client.authorization.authorization_uri
 	end
 end

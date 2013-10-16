@@ -7,13 +7,13 @@ get '/oauth_google' do
   callback_url = obtain_callback_url(client)
   p "CALLBACK URL............"
   p callback_url
-  # redirect to(callback_url)
+  redirect to(callback_url)
 end
 
-get '/oauth2callback' do
-  p "Hey logz.................................."
-  p params
-end
+# get '/oauth2callback' do
+#   p "Hey logz.................................."
+#   p params
+# end
 
 post '/receive' do
   # need to massage phone number into a standard format

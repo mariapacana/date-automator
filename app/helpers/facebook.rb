@@ -1,6 +1,6 @@
 helpers do 
 
-	def display_oauth
+	def display_oauth_fb
 		callback_url =  "http://date-automator.herokuapp.com/oauth_fromfb"
 
 		@oauth = Koala::Facebook::OAuth.new(ENV['FB_ID'], ENV['FB_TOKEN'], callback_url)

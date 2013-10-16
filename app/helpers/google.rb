@@ -1,6 +1,6 @@
 helpers do
 
-	def display_oauth
+	def display_oauth_google
 		client = Google::APIClient.new((options = 
 																	 {application_name: "Date Automator", 
 																		application_version: "1"}))

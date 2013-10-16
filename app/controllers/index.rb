@@ -3,9 +3,9 @@ get '/' do
 end
 
 get '/oauth_google' do
-  p "CALLBACK URL...........#{display_oauth}"
+  p "CALLBACK URL...........#{display_oauth_google}"
 
-  # redirect to(display_oauth)
+  redirect to(display_oauth_google)
 end
 
 # get '/oauth2callback' do

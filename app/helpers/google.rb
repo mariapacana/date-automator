@@ -23,6 +23,8 @@ helpers do
   end
 
   def get_contacts
-  	redirect to("https://www.google.com/m8/feeds/contacts/#{currentuser.email}/full?token=#{session[:access_token]}")
+		token = session[:access_token]  	
+		p "https://www.google.com/m8/feeds/contacts/#{currentuser.email}/full?access_token=#{token}"
+  	# redirect to("https://www.google.com/m8/feeds/contacts/#{currentuser.email}/full?access_token=#{token}")
   end
 end

@@ -19,7 +19,8 @@ helpers do
   def get_access_token(code)
   	client = initialize_client
   	client.authorization.code = code
-  	client.authorization.fetch_access_token!
+  	puts "ACCESS TOKEN BELOW?"
+  	p client.authorization.fetch_access_token!
   end
 
   def get_contacts

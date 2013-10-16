@@ -19,8 +19,9 @@ helpers do
   def get_access_token(code)
   	client = initialize_client
   	client.authorization.code = code
-  	puts "ACCESS TOKEN BELOW?"
-  	p client.authorization.fetch_access_token!
+  	token = client.authorization.fetch_access_token!
+  	p session[:access_token] = token[:access_token]
+  	p session[:refresh_token] = token[:refresh_token]
   end
 
   def get_contacts

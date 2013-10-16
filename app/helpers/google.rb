@@ -12,12 +12,12 @@ helpers do
 	end
     
   def display_oauth_google
-  	initialize_client
+  	client = initialize_client
   	client.authorization.authorization_uri.to_s
   end  
 
   def get_access_token(code)
-  	initialize_client
+  	client = initialize_client
   	client.authorization.code = code
   	client.authorization.fetch_access_token!
   end

@@ -12,6 +12,7 @@ helpers do
 	end
 
 	def obtain_callback_url(client)
-    client.authorization.authorization_uri
+		p "WE ARE IN CALLBACK URL"
+    p client.authorization.authorization_uri
 	end
 end

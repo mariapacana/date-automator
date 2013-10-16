@@ -3,11 +3,8 @@ get '/' do
 end
 
 get '/oauth_google' do
-  client = initialize_client
-  callback_url = obtain_callback_url(client)
   p "CALLBACK URL............"
-  puts"CALLBACK URL IS: #{callback_url}"
-  redirect to(callback_url)
+  redirect to(display_oauth)
 end
 
 # get '/oauth2callback' do

@@ -1,7 +1,9 @@
 helpers do
 
 	def initialize_client
-		client = Google::APIClient.new
+		client = Google::APIClient.new((options = 
+																	 {application_name: "Date Automator", 
+																		application_version: "1"}))
     client.authorization.client_id = ENV['G_ID']
     client.authorization.client_secret = ENV['G_SECRET']
     client.authorization.redirect_uri = ENV['G_CALLBACK']

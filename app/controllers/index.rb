@@ -3,7 +3,9 @@ get '/' do
 end
 
 get '/oauth_google' do
-  initialize_client
+  client = initialize_client
+  callback_url = obtain_callback_url(client)
+  redirect_to callback_url
 end
 
 get '/oauth2callback' do

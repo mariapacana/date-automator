@@ -7,8 +7,7 @@ get '/oauth_google' do
 end
 
 get '/oauth2callback' do
-  p "Hey logz.................................."
-  p params
+  get_access_token(params[:code])
 end
 
 post '/receive' do

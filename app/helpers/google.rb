@@ -21,4 +21,8 @@ helpers do
   	client.authorization.code = code
   	client.authorization.fetch_access_token!
   end
+
+  def get_contacts
+  	redirect to("https://www.google.com/m8/feeds/contacts/#{currentuser.email}/full?token=#{session[:access_token]}")
+  end
 end

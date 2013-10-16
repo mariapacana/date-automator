@@ -8,7 +8,11 @@ end
 
 get '/oauth2callback' do
   access_hash = get_access_token(params[:code])
-  ENV['G_TOKEN'] = access_hash[:access_token]
+  session[:access_token] = access_hash[:access_token]
+end
+
+get '/all_contacts' do
+  get_contacts
 end
 
 post '/receive' do

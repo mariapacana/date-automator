@@ -12,4 +12,8 @@ helpers do
 
     p redirect_uri = client.authorization.authorization_uri
 	end
+
+	def obtain_access_token
+
+	end
 end

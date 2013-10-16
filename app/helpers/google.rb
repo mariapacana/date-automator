@@ -8,7 +8,7 @@ helpers do
     client.authorization.client_secret = ENV['G_SECRET']
     client.authorization.redirect_uri = ENV['G_CALLBACK']
 		client.authorization.scope = ENV['G_CONTACTS_SCOPE']
-		client.authorization.authorization_uri
+		client.authorization.authorization_uri[1..-1]
 	end
-
+    
 end

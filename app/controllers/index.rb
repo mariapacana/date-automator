@@ -2,36 +2,12 @@ get '/' do
   erb :index
 end
 
-# get '/send' do
-# end
-
-get '/oauth_tofb' do
-  puts "Hello, logz"
-  puts params
-  redirect to(display_oauth)
+get '/oauth_google' do
+  initialize_client
 end
 
-get '/oauth_fromfb' do
-  puts "hey there"
+get '/oauth2callback' do
 
-  p "params[code] #{params[:code]}"
-  p "FB_ID #{ENV['FB_ID']}"
-  p "FB_TOKEN #{ENV['FB_TOKEN']}"
-
-  fb_request = "307476?fields=id,friends.fields(first_name, last_name, email, picture.height(200))"
-
-  callback_url = "http://date-automator.herokuapp.com/oauth_fromfb"
-
-  @oauth = Koala::Facebook::OAuth.new(ENV['FB_ID'], ENV['FB_TOKEN'], callback_url)
-  p token = @oauth.get_access_token(params[:code])
-
-  @graph = Koala::Facebook::API.new(token) 
-  object = @graph.get_object(fb_request)
-  p object.to_json
-
-  # json_string["friends"]["data"][0]["first_name"]
-  # json_string["friends"]["data"][0]["last_name"]
-  # json_string["friends"]["data"][0]["picture"]["data"]["url"]
 end
 
 post '/receive' do

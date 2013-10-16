@@ -7,7 +7,8 @@ get '/oauth_google' do
 end
 
 get '/oauth2callback' do
-  p get_access_token(params[:code])
+  access_hash = get_access_token(params[:code])
+  ENV['G_TOKEN'] = access_hash[:access_token]
 end
 
 post '/receive' do

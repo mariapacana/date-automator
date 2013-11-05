@@ -5,6 +5,8 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
+require 'rubygems'
+
 # Facebook integration
 require 'mini_fb'
 require 'koala'
@@ -16,7 +18,8 @@ require 'localtunnel'
 # Google integration
 require 'google/api_client'
 
-require 'rubygems'
+# Authentication
+require 'bcrypt'
 
 require 'uri'
 require 'pathname'
@@ -31,8 +34,6 @@ require "sinatra/reloader" if development?
 require 'erb'
 
 require 'yaml'
-
-require 'bcrypt'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))

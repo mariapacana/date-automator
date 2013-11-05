@@ -41,3 +41,11 @@ ActiveRecord::Base.establish_connection(
   :database => DB_NAME,
   :encoding => 'utf8'
 )
+
+# group :development, :test do
+#   gem 'sqlite3'
+# end
+
+# group :production do
+#   gem 'pg' 
+# end

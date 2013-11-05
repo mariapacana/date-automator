@@ -20,10 +20,13 @@ helpers do
   	client = initialize_client
   	client.authorization.code = code
   	token = client.authorization.fetch_access_token!
-  	p "TOKEN=#{token}"
-  	p "TOKEN CLASS=#{token.class}"
-  	p "ACCESS=#{session[:access_token] = token['access_token']}"
-  	p "REFRESH=#{session[:refresh_token] = token['refresh_token']}"
+    currentuser.g_access_token = token['access_token']
+    currentuser.g_refresh_token = token['refresh_token']
+    p currentuser
+  	# p "TOKEN=#{token}"
+  	# p "TOKEN CLASS=#{token.class}"
+  	# p "ACCESS=#{session[:access_token] = token['access_token']}"
+  	# p "REFRESH=#{session[:refresh_token] = token['refresh_token']}"
   end
 
   def get_contacts

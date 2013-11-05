@@ -26,6 +26,17 @@ helpers do
   end
 
   def get_contacts
-  	redirect to("https://www.google.com/m8/feeds/contacts/#{currentuser.email}/full/retrieveContactId?access_token=#{currentuser.google_access_token}")
+    parsed_url = URI.parse("https://www.google.com/m8/feeds/contacts/maria.pacana@gmail.com/full?alt=json&max-results=1000&access_token=#{currentuser.google_access_token}")
+    puts "url host #{parsed_url.host}, url port #{parsed_url.port}"
+    http = Net::HTTP.new(parsed_url.host, parsed_url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Get.new(parsed_url.request_uri)
+
+    response = http.request(request)
+    puts response.body
+    puts response.code
+
   end
 end

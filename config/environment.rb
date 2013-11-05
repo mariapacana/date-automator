@@ -21,7 +21,11 @@ require 'google/api_client'
 # Authentication
 require 'bcrypt'
 
+# XML parsing
+require 'nokogiri'
+
 require 'uri'
+require 'open-uri'
 require 'pathname'
 
 require 'pg'

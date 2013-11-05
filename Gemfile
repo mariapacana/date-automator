@@ -24,6 +24,9 @@ gem 'thin'
 # Authentication
 gem 'bcrypt-ruby'
 
+# For parsing the XML feed from Google Cotnacts
+gem 'nokogiri'
+
 gem 'activesupport'
 gem 'activerecord'
 

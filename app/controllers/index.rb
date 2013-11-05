@@ -8,7 +8,6 @@ end
 
 get '/oauth2callback' do
   get_access_token(params[:code])
-  # now what?
 end
 
 get '/all_contacts' do

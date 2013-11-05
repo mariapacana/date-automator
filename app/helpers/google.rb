@@ -20,7 +20,7 @@ helpers do
   	client = initialize_client
   	client.authorization.code = code
   	token = client.authorization.fetch_access_token!
-    currentuser.authorizations.create({type: "google",
+    currentuser.authorizations.create({auth_type: "google",
                                       access_token: token['access_token'],
                                       refresh_token: token['refresh_token']})
   end

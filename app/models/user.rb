@@ -27,8 +27,9 @@ class User < ActiveRecord::Base
   end
 
   def google_access_token
-    if authorizations.find_by_type("google")
-      authorizations.find_by_type("google").access_token
+    puts authorizations.find_by_auth_type("google")
+    if authorizations.find_by_auth_type("google")
+      authorizations.find_by_auth_type("google").access_token
     else
       nil
     end

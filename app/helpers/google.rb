@@ -26,6 +26,6 @@ helpers do
   end
 
   def get_contacts
-  	redirect to("https://www.google.com/m8/feeds/contacts/#{currentuser.email}/full?access_token=#{currentuser.google_access_token}")
+  	redirect to("https://www.google.com/m8/feeds/contacts/#{currentuser.email}/full/retrieveContactId?access_token=#{currentuser.google_access_token}")
   end
 end

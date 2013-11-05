@@ -23,16 +23,10 @@ helpers do
     currentuser.authorizations.create({type: "google",
                                       access_token: token['access_token'],
                                       refresh_token: token['refresh_token']})
-    p currentuser.authorizations
-  	# p "TOKEN=#{token}"
-  	# p "TOKEN CLASS=#{token.class}"
-  	# p "ACCESS=#{session[:access_token] = token['access_token']}"
-  	# p "REFRESH=#{session[:refresh_token] = token['refresh_token']}"
   end
 
   def get_contacts
-		p token = session[:access_token]  	
-		p "https://www.google.com/m8/feeds/contacts/#{currentuser.email}/full?access_token=#{token}"
+		p "https://www.google.com/m8/feeds/contacts/#{currentuser.email}/full?access_token=#{currentuser.google_access_token}"
   	# redirect to("https://www.google.com/m8/feeds/contacts/#{currentuser.email}/full?access_token=#{token}")
   end
 end

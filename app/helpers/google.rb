@@ -20,10 +20,10 @@ helpers do
   	client = initialize_client
   	client.authorization.code = code
   	token = client.authorization.fetch_access_token!
-    currentuser.authorization.create({g_access_token: token['access_token'],
-                                      g_refresh_token: token['refresh_token']})
-    p currentuser
-    p "CURRENT USER access token : #{currentuser.g_access_token}"
+    currentuser.authorizations.create({type: "google",
+                                      access_token: token['access_token'],
+                                      refresh_token: token['refresh_token']})
+    p currentuser.authorizations
   	# p "TOKEN=#{token}"
   	# p "TOKEN CLASS=#{token.class}"
   	# p "ACCESS=#{session[:access_token] = token['access_token']}"

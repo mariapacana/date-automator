@@ -1,6 +1,6 @@
 class CreateAuthorizations < ActiveRecord::Migration
   def change
-    create_table :exchanges do |t|
+    create_table :authorizations do |t|
       t.text :g_access_token
       t.text :g_refresh_token
       t.references :user

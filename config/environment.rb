@@ -1,6 +1,7 @@
 # Set up gems listed in the Gemfile.
 # See: http://gembundler.com/bundler_setup.html
 #      http://stackoverflow.com/questions/7243486/why-do-you-need-require-bundler-setup
+
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
@@ -38,6 +39,7 @@ require "sinatra/reloader" if development?
 require 'erb'
 
 require 'yaml'
+require 'pry'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
@@ -63,6 +65,14 @@ end
 unless (ENV['FB_SID'] || ENV['FB_TOKEN'])
 	fb_config = YAML.load_file(APP_ROOT.join('config', 'facebook.yaml'))
 	fb_config.each do |name, setting|
+	  ENV[name] = setting 
+	  puts "#{name} = #{ENV[name]}"
+	end
+end
+
+unless (ENV['G_SID'] || ENV['G_TOKEN'])
+	g_config = YAML.load_file(APP_ROOT.join('config', 'google.yaml'))
+	g_config.each do |name, setting|
 	  ENV[name] = setting 
 	  puts "#{name} = #{ENV[name]}"
 	end

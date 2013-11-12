@@ -2,7 +2,7 @@ get '/' do
   erb :index
 end
 
-get '/oauth_google' do
+get '/ouath_google' do
   redirect display_oauth_google
 end
 

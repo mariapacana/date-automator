@@ -35,5 +35,6 @@ gem 'rake'
 gem 'shotgun'
 
 gem 'rspec'
+gem 'pry'
 
 ruby '1.9.3'

@@ -15,6 +15,10 @@ get '/all_contacts' do
   erb :contact_list
 end
 
+get '/all_people' do
+  get_people
+end
+
 post '/receive' do
   # need to massage phone number into a standard format
   p params

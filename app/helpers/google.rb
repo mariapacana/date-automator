@@ -35,7 +35,6 @@ helpers do
     request = Net::HTTP::Get.new(parsed_url.request_uri)
     response = http.request(request)
     parser = ContactParser.new(response.body)
-    parser.streamline_contacts
-    parser.print_contacts
+    parser.get_formatted_contacts
   end
 end

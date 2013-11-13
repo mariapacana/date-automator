@@ -1,21 +1,33 @@
 class ContactParser
 
-  attr_accessor :contact_list
+  attr_accessor :contact_list, :contacts
 
   def initialize(string)
     @contact_list = JSON.parse(string)["feed"]["entry"]
-  end
-
-  def print_contacts
-    @contact_list.each do |c| 
-      puts "#{contact = Contact.new(c)}"
-    end
+    @contacts = []
   end
 
   def streamline_contacts
     @contact_list.select! {|info| ValidateList.complete?(info) }
   end
-    
+
+  def make_contact_objects
+    @contact_list.each do |c|
+      contact = Contact.new(c)
+      @contacts << contact
+    end
+  end
+  
+  def convert_contacts_to_json
+    @contacts.to_json
+  end
+
+  def get_formatted_contacts
+    streamline_contacts
+    make_contact_objects
+    convert_contacts_to_json
+  end
+
 end
 
 class Contact

@@ -11,7 +11,7 @@ get '/oauth2callback' do
 end
 
 get '/all_contacts' do
-  get_contacts
+  puts get_contacts
 end
 
 post '/receive' do

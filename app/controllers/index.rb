@@ -2,7 +2,7 @@ get '/' do
   erb :index
 end
 
-get '/ouath_google' do
+get '/oauth_google' do
   redirect display_oauth_google
 end
 
@@ -11,7 +11,8 @@ get '/oauth2callback' do
 end
 
 get '/all_contacts' do
-  puts get_contacts
+  @contacts = get_contacts
+  erb :contact_list
 end
 
 post '/receive' do

@@ -17,27 +17,24 @@ class ContactParser
       @contacts << contact
     end
   end
-  
-  def convert_contacts_to_json
-    @contacts.to_json
-  end
 
   def get_formatted_contacts
     streamline_contacts
     make_contact_objects
-    convert_contacts_to_json
+    @contacts
   end
 
 end
 
 class Contact
 
-  attr_accessor :name, :phone, :has_photo
+  attr_accessor :name, :phone, :photo, :id
 
   def initialize(info)
     @name = info["title"]["$t"]
-    @photo = info["link"][0]["href"]
     @phone = info["gd$phoneNumber"][0]["$t"]
+    @id = info["id"]["$t"].gsub!("http://www.google.com/m8/feeds/contacts/maria.pacana%40gmail.com/base/", "")
+    @photo = "https://www.google.com/m8/feeds/photos/media/maria.pacana@gmail.com/#{@id}?access_token=ya29.1.AADtN_WwseFDOgzSLViGNqnfFuV4AgJzkMxT79V8ANSwz4VghLDdZ4VMxIKqi4myx9Tnvg"
   end
 
   def to_s

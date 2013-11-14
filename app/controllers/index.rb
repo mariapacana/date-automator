@@ -7,16 +7,28 @@ get '/oauth_google' do
 end
 
 get '/oauth2callback' do
+  puts params
   get_access_token(params[:code])
 end
 
 get '/all_contacts' do
-  @contacts = get_contacts
-  erb :contact_list
+  import_contacts(currentuser)
+  # erb :contact_list
 end
 
-get '/all_people' do
-  get_people
+get '/all_plus' do
+  JSON.parse(import_plus(currentuser)).pry
+end
+
+get '/a_plus' do
+  @id = "118234176081336505524"
+  JSON.parse(one_plus(currentuser, @id)).pry
+  # "id"=>"118234176081336505524",
+
+end
+
+get '/search_plus' do
+  JSON.parse(search_plus(currentuser, "hello%40kate.io")).pry
 end
 
 post '/receive' do

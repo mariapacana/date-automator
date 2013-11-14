@@ -1,5 +1,4 @@
 helpers do
-
 	def initialize_client
 		client = Google::APIClient.new((options = 
 																	 {application_name: "Date Automator", 
@@ -7,7 +6,9 @@ helpers do
     client.authorization.client_id = ENV['G_ID']
     client.authorization.client_secret = ENV['G_SECRET']
     client.authorization.redirect_uri = ENV['G_CALLBACK']
-		client.authorization.scope = ENV['G_CONTACTS_SCOPE']
+		client.authorization.scope = [ENV['G_CONTACTS_SCOPE'],
+                                  ENV['G_PLUS_SCOPE'],
+                                  ENV['G_CAL_SCOPE']].join(" ")
 	  client
 	end
     
@@ -25,16 +26,36 @@ helpers do
                                       refresh_token: token['refresh_token']})
   end
 
-  def get_contacts
-    parsed_url = URI.parse("https://www.google.com/m8/feeds/contacts/#{currentuser.email}/full?alt=json&max-results=2000&access_token=#{currentuser.google_access_token}")
+  def get_data(request)
+    parsed_url = URI.parse(request)
     puts "url host #{parsed_url.host}, url port #{parsed_url.port}"
     http = Net::HTTP.new(parsed_url.host, parsed_url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
     request = Net::HTTP::Get.new(parsed_url.request_uri)
     response = http.request(request)
-    parser = ContactParser.new(response.body)
-    parser.get_formatted_contacts
+    response.body
   end
+
+  def import_contacts(currentuser)
+    contacts_info = get_data(ContactParser.contact_req(currentuser))
+    plus_info = get_data(ContactParser.plus_req(currentuser))
+
+    parser = ContactParser.new(contacts_info)
+    parser.contact_list
+    parser.get_formatted_contacts.pry
+  end
+
+  def import_plus(currentuser)
+    body = get_data(ContactParser.plus_req(currentuser))
+  end
+
+  def one_plus(currentuser, id)
+    body = get_data(ContactParser.one_plus_req(currentuser, id))
+  end
+
+  def search_plus(currentuser, name)
+    body = get_data(ContactParser.search_plus_req(currentuser, name))
+  end
+
 end

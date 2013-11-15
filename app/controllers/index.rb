@@ -20,6 +20,11 @@ get '/contact_req' do
  import_contacts(currentuser)
 end
 
+get '/get_photo' do
+  parser = ContactParser.new(currentuser) 
+  photo = parser.photo_req(params[:contact_id])
+end
+
 post '/receive' do
   # need to massage phone number into a standard format
   p params

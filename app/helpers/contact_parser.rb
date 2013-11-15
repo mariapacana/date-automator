@@ -22,9 +22,16 @@ class ContactParser
     get_data("https://www.google.com/m8/feeds/contacts/#{@currentuser.email}/full?alt=json&max-results=2000&access_token=#{@currentuser.google_access_token}").body
   end
 
-  # def has_photo_req(contact_id)
-  #   get_data("https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{contact_id}?access_token=#{@currentuser.google_access_token}").code != "404"
-  # end
+  def photo_req(contact_id)
+    response = get_data("https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{contact_id}?access_token=#{@currentuser.google_access_token}")
+    if (response.code == "200")
+      Base64.encode64(response.body) 
+    elsif (response.code == "404")
+      "404 Not Found"
+    else
+      "RATE LIMITED, sucka"
+    end
+  end
 
   def get_contacts
     info = contact_req

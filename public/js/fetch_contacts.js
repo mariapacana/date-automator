@@ -17,17 +17,24 @@ $(document).ready(function() {
 
   var processContacts = function(contacts) {
     $.each(contacts, function(index, contact) {
-      getContactPhoto(contact.photo);
+      var id = {};
+      id['contact_id'] = contact.id;
+      getContactPhoto(id);
     });
   }
 
-  var getContactPhoto = function(photoUrl) {
+  var getContactPhoto = function(id) {
     $.ajax({
-      url: photoUrl,
+      url: "/get_photo",
       type: "GET",
+      data: id,
       success: function(response) {
         console.log(response);
-        // $("#contactphun").append(response);
+        if (response !== "404 Not Found") {
+          var image = document.createElement('img');
+          image.src = 'data:image/jpg;base64,'+ response;
+          $("#contactphun").append(image);
+        }
       }
     });
   }

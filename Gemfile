@@ -21,6 +21,9 @@ gem 'sinatra-contrib'
 # Use Thin for our web server
 gem 'thin'
 
+# Cross Origin Resource Sharing
+gem 'sinatra-cross_origin'
+
 # Authentication
 gem 'bcrypt-ruby'
 

@@ -12,28 +12,12 @@ get '/oauth2callback' do
 end
 
 get '/all_contacts' do
-  @contacts = import_contacts(currentuser)[0..3]
-  @contacts
-  erb :contact_list
+  @contacts = import_contacts(currentuser)
+  @contacts.to_json
 end
 
 get '/contact_req' do
  import_contacts(currentuser)
-end
-
-get '/all_plus' do
-  JSON.parse(import_plus(currentuser)).pry
-end
-
-get '/a_plus' do
-  @id = "118234176081336505524"
-  JSON.parse(one_plus(currentuser, @id)).pry
-  # "id"=>"118234176081336505524",
-
-end
-
-get '/search_plus' do
-  JSON.parse(search_plus(currentuser, "hello%40kate.io")).pry
 end
 
 post '/receive' do

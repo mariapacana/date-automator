@@ -22,9 +22,9 @@ class ContactParser
     get_data("https://www.google.com/m8/feeds/contacts/#{@currentuser.email}/full?alt=json&max-results=2000&access_token=#{@currentuser.google_access_token}").body
   end
 
-  def has_photo_req(contact_id)
-    get_data("https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{contact_id}?access_token=#{@currentuser.google_access_token}").code != "404"
-  end
+  # def has_photo_req(contact_id)
+  #   get_data("https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{contact_id}?access_token=#{@currentuser.google_access_token}").code != "404"
+  # end
 
   def get_contacts
     info = contact_req
@@ -35,17 +35,17 @@ class ContactParser
     @contact_list.select! {|info| ValidateContact.complete?(info) }
   end
 
-  def make_contact_objects_with_photos
+  def make_contact_objects
     @contact_list.each do |c|
       contact = Contact.new(c, @currentuser)
-      @contacts << contact if has_photo_req(contact.id)
+      @contacts << contact
     end
   end
 
   def get_formatted_contacts
     get_contacts
     streamline_contacts
-    make_contact_objects_with_photos
+    make_contact_objects
     @contacts
   end
 

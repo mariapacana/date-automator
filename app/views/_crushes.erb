@@ -2,9 +2,7 @@
   <div id="new_crush_div">
     <h2>ADD CRUSHES</h2>
 
-    <form method="get" action="/oauth_google">
-      <input value="Add Google Contacts" type="submit" />
-    </form>
+    <button id="import" value="IMPORT"></button>
 
     <form id="new_crush_form">
       <%= erb :_crush %>
@@ -15,4 +13,6 @@
   <div id="all_crushes">
     <%= erb :_all_crushes %>
   </div>
+
+  <div id="contactphun"></div>
 </div>

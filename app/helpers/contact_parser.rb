@@ -8,15 +8,26 @@ class ContactParser
     @currentuser = currentuser
   end
 
+  def get_data(request)
+    parsed_url = URI.parse(request)
+    http = Net::HTTP.new(parsed_url.host, parsed_url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(parsed_url.request_uri)
+    response = http.request(request)
+    response
+  end
+
   def contact_req
-    "https://www.google.com/m8/feeds/contacts/#{@currentuser.email}/full?alt=json&max-results=2000&access_token=#{@currentuser.google_access_token}"
+    get_data("https://www.google.com/m8/feeds/contacts/#{@currentuser.email}/full?alt=json&max-results=2000&access_token=#{@currentuser.google_access_token}").body
   end
 
-  def get_photo_req(contact_id)
-    "https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{contact_id}?access_token=#{@currentuser.google_access_token}"
+  def has_photo_req(contact_id)
+    get_data("https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{contact_id}?access_token=#{@currentuser.google_access_token}").code != "404"
   end
 
-  def get_contacts(info)
+  def get_contacts
+    info = contact_req
     @contact_list = JSON.parse(info)["feed"]["entry"]
   end
 
@@ -24,19 +35,17 @@ class ContactParser
     @contact_list.select! {|info| ValidateContact.complete?(info) }
   end
 
-  def make_contact_objects
+  def make_contact_objects_with_photos
     @contact_list.each do |c|
       contact = Contact.new(c, @currentuser)
-      contact.photo = self.get_photo_req(contact.id)
-      # sleep(0.1)
-      @contacts << contact
+      @contacts << contact if has_photo_req(contact.id)
     end
   end
 
-  def get_formatted_contacts(info)
-    get_contacts(info)
+  def get_formatted_contacts
+    get_contacts
     streamline_contacts
-    make_contact_objects
+    make_contact_objects_with_photos
     @contacts
   end
 
@@ -51,6 +60,7 @@ class Contact
     @phone = info["gd$phoneNumber"][0]["$t"]
     @currentuser = currentuser
     @id = URI.decode(info["id"]["$t"]).gsub("http://www.google.com/m8/feeds/contacts/#{@currentuser.email}/base/","")
+    @photo = "https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{@id}?access_token=#{@currentuser.google_access_token}"
   end
 
   def to_s

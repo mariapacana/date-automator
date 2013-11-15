@@ -38,12 +38,9 @@ helpers do
   end
 
   def import_contacts(currentuser)
-    contacts_info = get_data(ContactParser.contact_req(currentuser))
-    plus_info = get_data(ContactParser.plus_req(currentuser))
-
-    parser = ContactParser.new(contacts_info)
-    parser.contact_list
-    parser.get_formatted_contacts.pry
+    parser = ContactParser.new(currentuser)
+    contact_info = get_data(parser.contact_req)
+    parser.get_formatted_contacts(contact_info)
   end
 
   def import_plus(currentuser)

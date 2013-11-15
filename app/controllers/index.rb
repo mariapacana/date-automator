@@ -12,8 +12,9 @@ get '/oauth2callback' do
 end
 
 get '/all_contacts' do
-  import_contacts(currentuser)
-  # erb :contact_list
+  @contacts = import_contacts(currentuser)
+  @contacts.pry
+  erb :contact_list
 end
 
 get '/all_plus' do

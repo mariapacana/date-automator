@@ -1,31 +1,35 @@
 class ContactParser
 
-  attr_accessor :contact_list, :contacts
+  attr_accessor :contact_list, :contacts, :currentuser
 
-  def initialize(string)
-    puts "YOYOYO==========================="
-    @contact_list = JSON.parse(string)["feed"]["entry"]
+  def initialize(currentuser)
+    @contact_list = []
     @contacts = []
+    @currentuser = currentuser
   end
 
-  def self.contact_req(currentuser)
-    "https://www.google.com/m8/feeds/contacts/#{currentuser.email}/full?alt=json&max-results=2000&access_token=#{currentuser.google_access_token}"
+  def contact_req
+    "https://www.google.com/m8/feeds/contacts/#{@currentuser.email}/full?alt=json&max-results=2000&access_token=#{@currentuser.google_access_token}"
   end
 
-  def self.plus_req(currentuser)
-    "https://www.googleapis.com/plus/v1/people/me/people/visible?access_token=#{currentuser.google_access_token}"
+  def plus_req
+    "https://www.googleapis.com/plus/v1/people/me/people/visible?access_token=#{@currentuser.google_access_token}"
   end
 
-  def self.one_plus_req(currentuser, id)
-    "https://www.googleapis.com/plus/v1/people/#{id}?access_token=#{currentuser.google_access_token}"
+  def one_plus_req(id)
+    "https://www.googleapis.com/plus/v1/people/#{id}?access_token=#{@currentuser.google_access_token}"
   end
 
-  def self.search_plus_req(currentuser, name)
-    "https://www.googleapis.com/plus/v1/people?query=#{name}&access_token=#{currentuser.google_access_token}"
+  def search_plus_req(name)
+    "https://www.googleapis.com/plus/v1/people?query=#{name}&access_token=#{@currentuser.google_access_token}"
   end
 
-  def self.get_photo_req(currentuser, contact_id)
-    "https://www.google.com/m8/feeds/photos/media/#{currentuser.email}/#{contact_id}?access_token=#{currentuser.google_access_token}"
+  def get_photo_req(contact_id)
+    "https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{contact_id}?access_token=#{@currentuser.google_access_token}"
+  end
+
+  def get_contacts(info)
+    @contact_list = JSON.parse(info)["feed"]["entry"]
   end
 
   def streamline_contacts
@@ -35,18 +39,16 @@ class ContactParser
   def make_contact_objects
     @contact_list.each do |c|
       contact = Contact.new(c)
+      contact.photo = self.get_photo_req(contact.id)
       @contacts << contact
     end
   end
 
-  def get_formatted_contacts
+  def get_formatted_contacts(info)
+    get_contacts(info)
     streamline_contacts
     make_contact_objects
     @contacts
-  end
-
-  def add_photo_to_contacts
-
   end
 
   def add_plus_info_to_contacts(plus_info)
@@ -65,7 +67,7 @@ end
 
 class Contact
 
-  attr_accessor :name, :phone, :photo
+  attr_accessor :name, :phone, :photo, :id
 
   def initialize(info)
     @name = info["title"]["$t"]

@@ -43,16 +43,4 @@ helpers do
     parser.get_formatted_contacts(contact_info)
   end
 
-  def import_plus(currentuser)
-    body = get_data(ContactParser.plus_req(currentuser))
-  end
-
-  def one_plus(currentuser, id)
-    body = get_data(ContactParser.one_plus_req(currentuser, id))
-  end
-
-  def search_plus(currentuser, name)
-    body = get_data(ContactParser.search_plus_req(currentuser, name))
-  end
-
 end

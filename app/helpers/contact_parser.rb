@@ -12,19 +12,6 @@ class ContactParser
     "https://www.google.com/m8/feeds/contacts/#{@currentuser.email}/full?alt=json&max-results=2000&access_token=#{@currentuser.google_access_token}"
   end
 
-  def plus_req
-    "https://www.googleapis.com/plus/v1/people/me/people/visible?access_token=
-    #{@currentuser.google_access_token}"
-  end
-
-  def one_plus_req(id)
-    "https://www.googleapis.com/plus/v1/people/#{id}?access_token=#{@currentuser.google_access_token}"
-  end
-
-  def search_plus_req(name)
-    "https://www.googleapis.com/plus/v1/people?query=#{name}&access_token=#{@currentuser.google_access_token}"
-  end
-
   def get_photo_req(contact_id)
     "https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{contact_id}?access_token=#{@currentuser.google_access_token}"
   end
@@ -51,18 +38,6 @@ class ContactParser
     streamline_contacts
     make_contact_objects
     @contacts
-  end
-
-  def add_plus_info_to_contacts(plus_info)
-    plus_contacts = JSON.parse(plus_info)["items"]
-    @contacts.each do |c|
-      plus_contacts.each do |p|
-        puts "#{c.name}, #{p['displayName']}"
-        if p["displayName"] == c.name
-          c.photo = p["image"]["url"]
-        end
-      end
-    end
   end
 
 end

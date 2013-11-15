@@ -13,7 +13,8 @@ class ContactParser
   end
 
   def plus_req
-    "https://www.googleapis.com/plus/v1/people/me/people/visible?access_token=#{@currentuser.google_access_token}"
+    "https://www.googleapis.com/plus/v1/people/me/people/visible?access_token=
+    #{@currentuser.google_access_token}"
   end
 
   def one_plus_req(id)
@@ -38,8 +39,9 @@ class ContactParser
 
   def make_contact_objects
     @contact_list.each do |c|
-      contact = Contact.new(c)
+      contact = Contact.new(c, @currentuser)
       contact.photo = self.get_photo_req(contact.id)
+      # sleep(0.1)
       @contacts << contact
     end
   end
@@ -67,12 +69,13 @@ end
 
 class Contact
 
-  attr_accessor :name, :phone, :photo, :id
+  attr_accessor :name, :phone, :photo, :id, :currentuser
 
-  def initialize(info)
+  def initialize(info, currentuser)
     @name = info["title"]["$t"]
     @phone = info["gd$phoneNumber"][0]["$t"]
-    @id = info["id"]["$t"].gsub("http://www.google.com/m8/feeds/contacts/maria.pacana%40gmail.com/base/","")
+    @currentuser = currentuser
+    @id = URI.decode(info["id"]["$t"]).gsub("http://www.google.com/m8/feeds/contacts/#{@currentuser.email}/base/","")
   end
 
   def to_s

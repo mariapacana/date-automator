@@ -16,6 +16,9 @@ $(document).ready(function() {
   }
 
   var processContacts = function(contacts) {
+    // var id = {};
+    // id['contact_id'] = contacts[0].id;
+    // getContactPhoto(id);
     $.each(contacts, function(index, contact) {
       var id = {};
       id['contact_id'] = contact.id;

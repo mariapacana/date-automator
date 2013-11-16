@@ -24,8 +24,10 @@ class ContactParser
 
   def photo_req(contact_id)
     response = get_data("https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{contact_id}?access_token=#{@currentuser.google_access_token}")
+    puts response.code
     if (response.code == "200")
-      Base64.encode64(response.body) 
+      puts "DATA URI BABY=============================="
+      data_uri = Base64.strict_encode64(response.body)
     elsif (response.code == "404")
       "404 Not Found"
     else

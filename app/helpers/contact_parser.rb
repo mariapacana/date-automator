@@ -28,10 +28,8 @@ class ContactParser
     if (response.code == "200")
       puts "DATA URI BABY=============================="
       data_uri = Base64.strict_encode64(response.body)
-    elsif (response.code == "404")
-      "404 Not Found"
     else
-      "RATE LIMITED, sucka"
+      response.code
     end
   end
 

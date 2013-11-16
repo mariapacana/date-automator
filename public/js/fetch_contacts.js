@@ -16,27 +16,23 @@ $(document).ready(function() {
   }
 
   var processContacts = function(contacts) {
-    // var id = {};
-    // id['contact_id'] = contacts[0].id;
-    // getContactPhoto(id);
     $.each(contacts, function(index, contact) {
-      var id = {};
-      id['contact_id'] = contact.id;
-      getContactPhoto(id);
+      var contactData = {};
+      contactData['id'] = contact.id;
+      contactData['name'] = contact.name;
+      getContactPhoto(contactData);
     });
   }
 
-  var getContactPhoto = function(id) {
+  var getContactPhoto = function(contact) {
     $.ajax({
       url: "/get_photo",
       type: "GET",
-      data: id,
+      data: contact,
       success: function(response) {
         console.log(response);
-        if (response !== "404 Not Found") {
-          var image = document.createElement('img');
-          image.src = 'data:image/jpg;base64,'+ response;
-          $("#contactphun").append(image);
+        if (response !== "Error") {
+          $("#contacts").append(response);
         }
       }
     });

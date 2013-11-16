@@ -16,13 +16,15 @@ get '/all_contacts' do
   @contacts.to_json
 end
 
-get '/contact_req' do
- import_contacts(currentuser)
-end
-
 get '/get_photo' do
   parser = ContactParser.new(currentuser) 
-  photo = parser.photo_req(params[:contact_id])
+  @photo = parser.photo_req(params[:id])
+  if @photo != "404" && @photo != "530"
+    @name = params[:name]
+    erb :_contact, {:layout => false}
+  else
+    "Error"
+  end
 end
 
 post '/receive' do

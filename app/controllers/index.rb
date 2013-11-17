@@ -24,6 +24,7 @@ get '/get_photo' do
     puts "#{params[:first_name]} #{params[:last_name]}"
     @last_name = params[:last_name]
     @first_name = params[:first_name]
+    @id = params[:id]
     erb :_contact, {:layout => false}
   else
     "Error"

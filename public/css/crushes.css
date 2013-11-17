@@ -47,15 +47,30 @@
   font-size: 130%;
 }
 
+#import {
+  width: 200px;
+}
+
 #contacts {
-  display: inline;
+  margin: 20px;
 }
 
 .contact {
   margin: 0 auto;
-  display: inline;
+  margin-top: 0;
+  display: inline-block;
   border: 2px solid #EBEBEB;
   border-radius: 15px;
-  width: 200px;
-  height: 200px;
+  height: 150px;
+  width: 100px;
+  padding: 10px;
+  line-height: 50%;
+}
+
+.contact img {
+  margin: 0 auto;
+}
+
+.contact:hover {
+  border-color: #FF1493;
 }

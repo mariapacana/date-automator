@@ -19,7 +19,8 @@ $(document).ready(function() {
     $.each(contacts, function(index, contact) {
       var contactData = {};
       contactData['id'] = contact.id;
-      contactData['name'] = contact.name;
+      contactData['first_name'] = contact.first_name;
+      contactData['last_name'] = contact.last_name;
       getContactPhoto(contactData);
     });
   }

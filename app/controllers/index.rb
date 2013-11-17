@@ -20,7 +20,10 @@ get '/get_photo' do
   parser = ContactParser.new(currentuser) 
   @photo = parser.photo_req(params[:id])
   if @photo != "404" && @photo != "530"
-    @name = params[:name]
+    puts "PHOTO COMING UP"
+    puts "#{params[:first_name]} #{params[:last_name]}"
+    @last_name = params[:last_name]
+    @first_name = params[:first_name]
     erb :_contact, {:layout => false}
   else
     "Error"

@@ -60,18 +60,24 @@ end
 
 class Contact
 
-  attr_accessor :name, :phone, :photo, :id, :currentuser
+  attr_accessor :last_name, :first_name, :phone, :photo, :id, :currentuser
 
   def initialize(info, currentuser)
-    @name = info["title"]["$t"]
+    parse_name(info["title"]["$t"])
     @phone = info["gd$phoneNumber"][0]["$t"]
     @currentuser = currentuser
     @id = URI.decode(info["id"]["$t"]).gsub("http://www.google.com/m8/feeds/contacts/#{@currentuser.email}/base/","")
     @photo = "https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{@id}?access_token=#{@currentuser.google_access_token}"
   end
 
+  def parse_name(text)
+    names = text.split(" ")
+    @last_name = names.last
+    @first_name = names[0..-2].join(" ")
+  end
+
   def to_s
-    "Name: #{@name} phone: #{@phone} id: #{@id}"
+    "Name: #{@first_name} #{@last_name} phone: #{@phone} id: #{@id}"
   end
 
 end

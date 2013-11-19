@@ -26,8 +26,7 @@ class ContactParser
     response = get_data("https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{contact_id}?access_token=#{@currentuser.google_access_token}")
     puts response.code
     if (response.code == "200")
-      puts "DATA URI BABY=============================="
-      data_uri = Base64.strict_encode64(response.body)
+      data_uri = Base64.encode64(response.body)
     else
       response.code
     end

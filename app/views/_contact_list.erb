@@ -1,0 +1,8 @@
+<% @contacts.each do |contact| %>
+  <div class="contact" class="contact-details" id="<% contact.id %>">
+    <img class="contact-photo" src = "data:image/jpg;base64,<%=contact.photo%>">
+    <p class="contact-name"><%= contact.first_name %></p>
+    <p class="contact-name"><%= contact.last_name %></p>
+    <p class="contact-phone"><%= contact.phone %></p>
+  </div>
+<% end %>

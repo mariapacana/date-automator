@@ -38,20 +38,28 @@ class ContactParser
     @contact_list = JSON.parse(info)["feed"]["entry"]
   end
 
-  def streamline_contacts
-    @contact_list.select! {|info| ValidateContact.complete?(info) }
+  def get_contacts_with_name_and_phone
+    @contact_list.select! {|info| ValidateContact.has_name_and_phone?(info) }
+  end
+
+  def insert_contact_if_has_photo(contact)
+    photo = photo_req(contact.id)
+    if (photo != "404" && photo != "530") 
+      contact.photo = photo
+      @contacts << contact
+    end
   end
 
   def make_contact_objects
     @contact_list.each do |c|
       contact = Contact.new(c, @currentuser)
-      @contacts << contact
+      insert_contact_if_has_photo(contact)
     end
   end
 
   def get_formatted_contacts
     get_contacts
-    streamline_contacts
+    get_contacts_with_name_and_phone
     make_contact_objects
     @contacts
   end
@@ -92,7 +100,7 @@ class ValidateContact
     list["gd$phoneNumber"] && !(list["gd$phoneNumber"][0]["$t"].nil?) && (list["gd$phoneNumber"][0]["$t"] != "") 
   end
 
-  def self.complete?(list)
+  def self.has_name_and_phone?(list)
     self.has_name?(list) && self.has_phone?(list)
   end
 end

@@ -6,29 +6,25 @@ get '/oauth_google' do
   redirect display_oauth_google
 end
 
-get '/oauth2callback' do
-  puts params
-  get_access_token(params[:code])
-end
-
-get '/all_contacts' do
-  @contacts = import_contacts(currentuser)
-  @contacts.to_json
-end
-
-get '/get_photo' do
-  parser = ContactParser.new(currentuser) 
-  @photo = parser.photo_req(params[:id])
-  if @photo != "404" && @photo != "530"
-    puts "PHOTO COMING UP"
-    puts "#{params[:first_name]} #{params[:last_name]}"
-    @last_name = params[:last_name]
-    @first_name = params[:first_name]
-    @id = params[:id]
-    erb :_contact, {:layout => false}
-  else
-    "Error"
+get '/crushes' do
+  if params[:code]
+    get_access_token(params[:code]) 
+    @contacts = import_contacts(currentuser)
   end
+  @crushes = currentuser.crushes
+  erb :_crushes
+end
+
+post '/crushes' do
+  hello = "Hi there! Are you interested in #{currentuser.first_name}?"
+  params.each do |index, crush|
+    send_sms("+16506459949", crush["phone"], hello)
+    @new_crush = currentuser.crushes.create(crush)
+    currentuser.messages.create(body: hello, from_user: true, crush: @new_crush)
+  end
+
+  @crushes = currentuser.crushes
+  erb :_all_crushes, {:layout => false}
 end
 
 post '/receive' do
@@ -64,21 +60,4 @@ post '/schedule' do
   end
   @times = currentuser.free_times
   erb :_all_free_dates, {:layout => false}
-end
-
-get '/crushes' do
-  @crushes = currentuser.crushes
-  erb :_crushes
-end
-
-post '/crushes' do
-  hello = "Hi there! Are you interested in #{currentuser.first_name}?"
-  params.each do |index, crush|
-    send_sms("+16506459949", crush["phone"], hello)
-    @new_crush = currentuser.crushes.create(crush)
-    currentuser.messages.create(body: hello, from_user: true, crush: @new_crush)
-  end
-
-  @crushes = currentuser.crushes
-  erb :_all_crushes, {:layout => false}
 end

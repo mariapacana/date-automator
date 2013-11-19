@@ -2,9 +2,15 @@
   <div id="new_crush_div">
     <h2>ADD CRUSHES</h2>
 
-    <button id="import">Add Google Contacts</button>
+    <form action="/oauth_google" method="get">
+      <button id="import">Add Google Contacts</button>
+    </form>
 
-    <div id="contacts"></div>
+    <div id="contacts">
+      <% if @contacts %>
+        <%= erb :_contact_list %>
+      <% end %>
+    </div>
 
     <form id="new_crush_form">
       <%= erb :_crush %>

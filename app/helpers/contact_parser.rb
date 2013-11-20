@@ -6,6 +6,7 @@ class ContactParser
     @contact_list = []
     @contacts = []
     @currentuser = currentuser
+    @access_token = @currentuser.google_access_token
   end
 
   def get_data(request)
@@ -19,12 +20,11 @@ class ContactParser
   end
 
   def contact_req
-    get_data("https://www.google.com/m8/feeds/contacts/#{@currentuser.email}/full?alt=json&max-results=2000&access_token=#{@currentuser.google_access_token}").body
+    get_data("https://www.google.com/m8/feeds/contacts/#{@currentuser.email}/full?alt=json&max-results=2000&access_token=#{@access_token}").body
   end
 
   def photo_req(contact_id)
-    response = get_data("https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{contact_id}?access_token=#{@currentuser.google_access_token}")
-    puts response.code
+    response = get_data("https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{contact_id}?access_token=#{@access_token}")
     if (response.code == "200")
       data_uri = Base64.encode64(response.body)
     else
@@ -74,7 +74,7 @@ class Contact
     @phone = info["gd$phoneNumber"][0]["$t"]
     @currentuser = currentuser
     @id = URI.decode(info["id"]["$t"]).gsub("http://www.google.com/m8/feeds/contacts/#{@currentuser.email}/base/","")
-    @photo = "https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{@id}?access_token=#{@currentuser.google_access_token}"
+    @photo = "https://www.google.com/m8/feeds/photos/media/#{@currentuser.email}/#{@id}?access_token=#{@access_token}"
   end
 
   def parse_name(text)

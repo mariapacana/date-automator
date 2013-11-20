@@ -54,23 +54,23 @@ $(document).ready(function() {
     });
   };
 
-  // var submitCrushes = function () {
-  //   $('#crushes_submit').on('click', function(e){
-  //     e.preventDefault();
-  //     data = $('#new_crush_form').serialize();
-  //     $.ajax({
-  //       url: "/crushes",
-  //       method: "POST",
-  //       data: data
-  //     }).done(function(response){
-  //       $('#all_crushes').replaceWith(response);
-  //       $('#new_crush_form').trigger('reset');
-  //     });
-  //   });
-  // };
+  var submitCrushes = function () {
+    $('#crushes_submit').on('click', function(e){
+      e.preventDefault();
+      data = $('#new_crush_form').serialize();
+      $.ajax({
+        url: "/crushes",
+        method: "POST",
+        data: data
+      }).done(function(response){
+        $('#all_crushes').replaceWith(response);
+        $('#new_crush_form').trigger('reset');
+      });
+    });
+  };
 
   addCrush();
   addGoogleCrush();
-  // submitCrushes();
+  submitCrushes();
 });
 

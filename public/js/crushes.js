@@ -13,20 +13,30 @@ $(document).ready(function() {
       $('#crush input').eq(-3).attr('name', indexedField(index, 'first_name'));
   };
 
+  var addGoogleCrushInfo = function(firstName, lastName, phone) {
+    $('#crush input').eq(-3).val(firstName);
+    $('#crush input').eq(-2).val(lastName);
+    $('#crush input').eq(-1).val(phone);
+  };
+
+  var addGoogleCrush = function () {
+    $('#contacts').on('click', '.contact', function () { 
+      var firstName = $(this).find(".contact-first-name").html();
+      var lastName = $(this).find(".contact-last-name").html();
+      var phone = $(this).find(".contact-phone").html();
+      $('#crush').append(crushTemplate);
+      addIndexToCrush();
+      addGoogleCrushInfo(firstName, lastName, phone);
+      $(this).css('border-color', '#FF1493');
+    });
+  };
+
+
   var addCrush = function () {
     $('#new_crush_form').on('click', '.add_crush', function(){
       $(this).remove();
       $('#crush').append(crushTemplate);
       addIndexToCrush();
-    });
-  };
-
-
-  var addDate = function () {
-    $('#new_date_form').on('click', '.add_date', function(){
-      $(this).remove();
-      $('#datetime').append(datetimeTemplate);
-      addIndexToFreeTime();
     });
   };
 
@@ -46,6 +56,7 @@ $(document).ready(function() {
   };
 
   addCrush();
+  addGoogleCrush();
   submitCrushes();
 });
 

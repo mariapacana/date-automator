@@ -8,7 +8,10 @@ Completed:
 * User password is encrypted with BCrypt
 * Users provide dates and times when they are available
 * Dates and times are saved into the database
-* Users give information for crushes they want to date
+* Contacts are imported from the Google Contacts API
+* Users can save crushes
+  * ...by clicking on Google Contacts
+  * ...by manually entering in a crush's information
 * Crushes are saved into the database
 
 Not Complete:

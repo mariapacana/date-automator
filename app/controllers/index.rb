@@ -6,10 +6,32 @@ get '/oauth_google' do
   redirect display_oauth_google
 end
 
+get '/all_contacts' do
+  puts "ALL CONTACTS"
+  @contacts = import_contacts(currentuser)
+  @contacts.to_json
+end
+
+get '/get_photo' do
+  # puts "GETTING PHOTO ========="
+  parser = ContactParser.new(currentuser) 
+  @photo = parser.photo_req(params[:id])
+  if @photo != "404" && @photo != "530"
+    # puts "PHOTO COMING UP"
+    # puts "#{params[:first_name]} #{params[:last_name]}"
+    @last_name = params[:last_name]
+    @first_name = params[:first_name]
+    @id = params[:id]
+    @phone = params[:phone]
+    erb :_contact, {:layout => false}
+  else
+    "Error"
+  end
+end
+
 get '/crushes' do
   if params[:code]
     get_access_token(params[:code]) 
-    @contacts = import_contacts(currentuser)
   end
   @crushes = currentuser.crushes
   erb :_crushes
@@ -18,8 +40,8 @@ end
 post '/crushes' do
   hello = "Hi there! Are you interested in #{currentuser.first_name}?"
   params.each do |index, crush|
-    crush["phone"] = standardize_phone(crush["phone"])
-    puts crush
+    standardize_phone(crush["phone"])
+    crush.pry
     send_sms(ENV['TW_PHONE'], crush["phone"], hello)
     @new_crush = currentuser.crushes.create(crush)
     # currentuser.messages.create(body: hello, from_user: true, crush: @new_crush)

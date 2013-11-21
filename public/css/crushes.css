@@ -3,6 +3,11 @@
   margin: 0 auto 40px auto;
 }
 
+#new_crush, #new_crush_form {
+  margin: 0 auto;
+  text-align: center;
+}
+
 #new_crush input, #crush input {
   height: 20px;
   font-size: 130%;
@@ -53,6 +58,11 @@
 
 #contacts {
   margin: 20px;
+}
+
+#crushes_submit {
+  position: absolute;
+  left: 288px;
 }
 
 .contact {

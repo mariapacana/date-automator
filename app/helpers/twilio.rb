@@ -22,18 +22,13 @@ helpers do
   end
 
   def standardize_phone(phone)
-    strip_phone(phone)
-    phone = add_one_to_phone(phone)
+    phone.gsub!(/(\D)/,"")
+    if phone.length == 11
+      phone.insert(0, '+')
+    elsif phone.length == 10
+      phone.insert(0, '+1') 
+    end
     phone
   end
-
-  def strip_phone(phone)
-    phone.gsub!(/(\D)/,"")
-  end
-
-  def add_one_to_phone(phone)
-    '+1'+ phone if phone.length < 11
-  end
-
 
 end

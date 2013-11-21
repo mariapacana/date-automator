@@ -41,19 +41,8 @@ class ContactParser
     @contact_list.select! {|info| ValidateContact.has_name_and_phone?(info) }
   end
 
-  def insert_contact_if_has_photo(contact)
-    photo = photo_req(contact.id)
-    if (photo != "404" && photo != "530") 
-      contact.photo = photo
-      @contacts << contact
-    end
-  end
-
   def make_contact_objects
-    @contact_list.each do |c|
-      contact = Contact.new(c, @currentuser)
-      insert_contact_if_has_photo(contact)
-    end
+    @contact_list.each {|c| @contacts << Contact.new(c, @currentuser) }
   end
 
   def get_formatted_contacts

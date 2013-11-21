@@ -6,7 +6,7 @@ helpers do
   end
 
   def send_sms(sender_phone, recipient_phone, body)
-    puts "hey there! i'm smsing"
+    puts "SMSed #{recipient_phone}"
     client = new_client
     client.account.sms.messages.create(
       from: sender_phone,
@@ -21,15 +21,10 @@ helpers do
     twiml.text
   end
 
-  # def call_phone(phone)
-  #   url = ENV['TUNNEL']+'/call'
-  #   client = new_client
-  #   client.account.calls.create(:from => current_user.phone, :to => phone, :url => url)
-  # end
-
   def standardize_phone(phone)
     strip_phone(phone)
-    add_one_to_phone(phone)
+    phone = add_one_to_phone(phone)
+    phone
   end
 
   def strip_phone(phone)
@@ -37,7 +32,7 @@ helpers do
   end
 
   def add_one_to_phone(phone)
-    '1'+ phone if phone.length < 11
+    '+1'+ phone if phone.length < 11
   end
 
 

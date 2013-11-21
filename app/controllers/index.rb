@@ -16,9 +16,11 @@ get '/crushes' do
 end
 
 post '/crushes' do
-  # hello = "Hi there! Are you interested in #{currentuser.first_name}?"
+  hello = "Hi there! Are you interested in #{currentuser.first_name}?"
   params.each do |index, crush|
-    # send_sms("+16506459949", crush["phone"], hello)
+    crush["phone"] = standardize_phone(crush["phone"])
+    puts crush
+    send_sms(ENV['TW_PHONE'], crush["phone"], hello)
     @new_crush = currentuser.crushes.create(crush)
     # currentuser.messages.create(body: hello, from_user: true, crush: @new_crush)
   end
@@ -29,17 +31,16 @@ post '/crushes' do
 end
 
 post '/receive' do
-  # need to massage phone number into a standard format
-  p params
-  
+  puts "RECEIVED======================================"
   @crush_phone = params[:From]
   @message =  params[:Body]
 
-  @crush = Crush.find_by_phone(@crush_phone)
-  if (@message == "Yes")
-    @crush.update_attributes(interested: true)
-  else
-    @crush.update_attributes(interested: false)
+  if @crush = Crush.find_by_phone(@crush_phone)
+    if (@message == "Yes")
+      @crush.update_attributes(interested: true)
+    else
+      @crush.update_attributes(interested: false)
+    end
   end
 
 end

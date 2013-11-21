@@ -16,13 +16,14 @@ get '/crushes' do
 end
 
 post '/crushes' do
-  hello = "Hi there! Are you interested in #{currentuser.first_name}?"
+  # hello = "Hi there! Are you interested in #{currentuser.first_name}?"
   params.each do |index, crush|
-    send_sms("+16506459949", crush["phone"], hello)
+    # send_sms("+16506459949", crush["phone"], hello)
     @new_crush = currentuser.crushes.create(crush)
-    currentuser.messages.create(body: hello, from_user: true, crush: @new_crush)
+    # currentuser.messages.create(body: hello, from_user: true, crush: @new_crush)
   end
 
+  currentuser.crushes
   @crushes = currentuser.crushes
   erb :_all_crushes, {:layout => false}
 end

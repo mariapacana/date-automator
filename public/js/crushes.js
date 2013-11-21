@@ -2,8 +2,8 @@ $(document).ready(function() {
 
   var index = 0;
 
-  var crushTemplate = $('#new_crush').html()+
-                      ("<button id='remove_crush'>Remove Crush</button><br>");
+  var crushTemplate ="<div class='crush'>"+
+                      $('#new_crush').html() + "</div>";
 
   var indexedField = function (num, type){
     return num.toString() + '[' + type + ']';
@@ -16,10 +16,14 @@ $(document).ready(function() {
     $('#crush input').eq(-1).attr('name', indexedField(index, 'phone'));
   };
 
-  var addCrushInfo = function(firstName, lastName, phone) {
-    $('#crush input').eq(-3).val(firstName);
-    $('#crush input').eq(-2).val(lastName);
-    $('#crush input').eq(-1).val(phone);
+  var addCrushInfo = function(firstName, lastName, phone, id) {
+    var crush = $('.crush').last();
+    crush.find(':nth-child(1)').val(firstName);
+    crush.find(':nth-child(2)').val(lastName);
+    crush.find(':nth-child(3)').val(phone);
+    crush.find(':nth-child(4)').text("Remove");
+    crush.find(':nth-child(4)').attr("class", "remove_crush");
+    if (id !== null) { crush.attr('id', id) };
   };
 
   var addGoogleCrush = function () {
@@ -27,9 +31,10 @@ $(document).ready(function() {
       var firstName = $(this).find(".contact-first-name").html();
       var lastName = $(this).find(".contact-last-name").html();
       var phone = $(this).find(".contact-phone").html();
+      var id = $(this).attr("id");
       $('#crush').append(crushTemplate);
       addIndexToCrush();
-      addCrushInfo(firstName, lastName, phone);
+      addCrushInfo(firstName, lastName, phone, id);
       $(this).css('border-color', '#FF1493');
     });
   };
@@ -49,8 +54,15 @@ $(document).ready(function() {
 
       $('#crush').append(crushTemplate);
       addIndexToCrush();
-      addCrushInfo(firstName, lastName, phone);
+      addCrushInfo(firstName, lastName, phone, null);
       clearInputCrush();
+    });
+  };
+
+  var removeCrushes = function () {
+    $('#crush').on('click', '.remove_crush', function() {
+      $(this).parent().remove();
+      $(this).closest('br').remove();
     });
   };
 
@@ -71,6 +83,7 @@ $(document).ready(function() {
 
   addCrush();
   addGoogleCrush();
+  removeCrushes();
   submitCrushes();
 });
 

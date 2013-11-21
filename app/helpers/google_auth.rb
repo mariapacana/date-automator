@@ -8,11 +8,12 @@ helpers do
     client.authorization.redirect_uri = ENV['G_CALLBACK']
     client.authorization.scope = [ENV['G_CONTACTS_SCOPE'],
                                   ENV['G_PLUS_SCOPE'],
-                                  ENV['G_CAL_SCOPE']].join(" ")
+                                  ENV['G_CAL_SCOPE']]
     client
   end
-    
+
   def display_oauth_google
+    puts "I AM HERE ============================"
     client = initialize_client
     client.authorization.authorization_uri.to_s
   end  

@@ -33,6 +33,8 @@ gem 'nokogiri'
 gem 'activesupport'
 gem 'activerecord'
 
+gem 'shoulda-matchers'
+
 gem 'rake'
 
 gem 'shotgun'

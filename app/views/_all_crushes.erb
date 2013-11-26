@@ -5,7 +5,7 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th>Phone</th>
-      <th>Interested?</th>
+      <th>Status</th>
       <th>Date Scheduled</th>
     </tr>
     <% @crushes.each do |crush|%>
@@ -13,7 +13,7 @@
       <td><%= crush.first_name %></td>
       <td><%= crush.last_name %></td>
       <td><%= crush.phone %></td>
-      <td><%= crush.interested %></td>
+      <td><%= crush.status %></td>
       <td><%= crush.date_scheduled %></td>
     </tr> 
     <% end %>

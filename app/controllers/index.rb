@@ -44,7 +44,6 @@ post '/crushes' do
     crush.pry
     send_sms(ENV['TW_PHONE'], crush["phone"], hello)
     @new_crush = currentuser.crushes.create(crush)
-    # currentuser.messages.create(body: hello, from_user: true, crush: @new_crush)
   end
 
   currentuser.crushes
@@ -59,9 +58,9 @@ post '/receive' do
 
   if @crush = Crush.find_by_phone(@crush_phone)
     if (@message == "Yes")
-      @crush.update_attributes(interested: true)
+      @crush.update_attributes(status: "interested")
     else
-      @crush.update_attributes(interested: false)
+      @crush.update_attributes(status: "not interested")
     end
   end
 

@@ -43,6 +43,8 @@ require 'pry'
 
 require "base64"
 
+require 'shoulda-matchers'
+require 'rspec'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
@@ -58,7 +60,6 @@ require APP_ROOT.join('config', 'database')
 
 unless (ENV['TW_SID'] || ENV['TW_TOKEN'])
 	twilio_config = YAML.load_file(APP_ROOT.join('config', 'twilio.yaml'))
-	p twilio_config
 	twilio_config.each do |name, setting|
 	  ENV[name] = setting 
 	  puts "#{name} = #{ENV[name]}"

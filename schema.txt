@@ -1,7 +1,6 @@
-SCHEMA
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- SQL XML created by WWW SQL Designer, http://code.google.com/p/wwwsqldesigner/ -->
-<!-- Active URL: http://socrates.devbootcamp.com/sql -->
+<!-- Active URL: https://socrates.devbootcamp.com/sql -->
 <sql>
 <datatypes db="mysql">
   <group label="Numeric" color="rgb(238,238,170)">
@@ -33,7 +32,7 @@ SCHEMA
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="118" y="287" name="users">
+</datatypes><table x="66" y="254" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -56,11 +55,11 @@ SCHEMA
 <part>id</part>
 </key>
 </table>
-<table x="575" y="266" name="crushes">
+<table x="607" y="360" name="crushes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="id_users" null="1" autoincrement="0">
+<row name="id_user" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
@@ -73,28 +72,25 @@ SCHEMA
 <row name="phone" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
-<row name="interested?" null="1" autoincrement="0">
-<datatype>BINARY</datatype>
-<default>NULL</default></row>
-<row name="date_scheduled?" null="1" autoincrement="0">
+<row name="status" null="1" autoincrement="0">
 <datatype>BINARY</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="345" y="416" name="freetimes">
+<table x="364" y="442" name="freetimes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="start_time" null="1" autoincrement="0">
 <datatype>DATETIME</datatype>
 <default>NULL</default></row>
-<row name="id_users" null="1" autoincrement="0">
+<row name="id_user" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
-<row name="id_crushes" null="1" autoincrement="0">
+<row name="id_crush" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="crushes" row="id" />
 </row>
@@ -102,17 +98,21 @@ SCHEMA
 <part>id</part>
 </key>
 </table>
-<table x="348" y="96" name="exchanges">
+<table x="367" y="20" name="exchanges">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="id_users" null="1" autoincrement="0">
+<row name="id_user" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
-<row name="id_crushes" null="1" autoincrement="0">
+<row name="id_crush" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="crushes" row="id" />
+</row>
+<row name="id_pin" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="pin" row="id" />
 </row>
 <row name="request_text" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
@@ -129,6 +129,18 @@ SCHEMA
 <row name="updated_at" null="1" autoincrement="0">
 <datatype>TIMESTAMP</datatype>
 <default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="705" y="179" name="pin">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_crushes" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="crushes" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>

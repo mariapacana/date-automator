@@ -13,7 +13,6 @@ helpers do
   end
 
   def display_oauth_google
-    puts "I AM HERE ============================"
     client = initialize_client
     client.authorization.authorization_uri.to_s
   end  

@@ -4,12 +4,12 @@ class User < ActiveRecord::Base
   has_many :free_times
   has_many :authorizations
 
-  validates_uniqueness_of :email, :scope => :phone
+  validates_uniqueness_of :email, :scope => :phone_number
 
-  validates :first_name, :last_name, :email, :phone, :password_hash, :presence => true
+  validates :first_name, :last_name, :email, :phone_number, :password_hash, :presence => true
   validates :email, :format => { :with => /.*@.*\..*/,
     :message => "must be valid" }
-  validates :phone, :format => { :with => /1?(-|.)?\d{3}(-|.)?\d{3}(-|.)?\d{4}/,
+  validates :phone_number, :format => { :with => /\+1(-|.)?\d{3}(-|.)?\d{3}(-|.)?\d{4}/,
     :message => "must be valid" }
 
   include BCrypt

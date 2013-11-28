@@ -42,4 +42,6 @@ gem 'shotgun'
 gem 'rspec'
 gem 'pry'
 
+gem 'awesome_print'
+
 ruby '1.9.3'

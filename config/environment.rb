@@ -45,6 +45,7 @@ require "base64"
 
 require 'shoulda-matchers'
 require 'rspec'
+require 'awesome_print'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))

@@ -3,9 +3,9 @@ class CreateExchanges < ActiveRecord::Migration
     create_table :exchanges do |t|
       t.text :request_text
       t.text :response_text
-      t.string :type
+      t.integer :pin
       t.references :user
-      t.references :crush
+      t.references :phone
       t.timestamps
     end
   end

@@ -1,5 +1,5 @@
 class Exchange < ActiveRecord::Base
   belongs_to :user
-  belongs_to :crush
+  belongs_to :phone
 
 end

@@ -7,5 +7,6 @@ class CreateAuthorizations < ActiveRecord::Migration
       t.references :user
       t.timestamps
     end
+    add_index(:authorizations, [:auth_type, :user_id], unique: true)
   end
 end

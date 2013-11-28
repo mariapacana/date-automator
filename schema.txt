@@ -32,7 +32,7 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="66" y="254" name="users">
+</datatypes><table x="149" y="161" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -55,7 +55,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="607" y="360" name="crushes">
+<table x="473" y="417" name="crushes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -69,9 +69,6 @@
 <row name="lastname" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
-<row name="phone" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
 <row name="status" null="1" autoincrement="0">
 <datatype>BINARY</datatype>
 <default>NULL</default></row>
@@ -79,26 +76,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="364" y="442" name="freetimes">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="start_time" null="1" autoincrement="0">
-<datatype>DATETIME</datatype>
-<default>NULL</default></row>
-<row name="id_user" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="users" row="id" />
-</row>
-<row name="id_crush" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="crushes" row="id" />
-</row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="367" y="20" name="exchanges">
+<table x="465" y="54" name="exchanges">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -106,14 +84,13 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
-<row name="id_crush" null="1" autoincrement="0">
+<row name="id_phone" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="crushes" row="id" />
+<default>NULL</default><relation table="phones" row="id" />
 </row>
-<row name="id_pin" null="1" autoincrement="0">
+<row name="pin" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="pin" row="id" />
-</row>
+<default>NULL</default></row>
 <row name="request_text" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
@@ -133,11 +110,11 @@
 <part>id</part>
 </key>
 </table>
-<table x="705" y="179" name="pin">
+<table x="793" y="129" name="phones">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="id_crushes" null="1" autoincrement="0">
+<row name="id_crush" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="crushes" row="id" />
 </row>

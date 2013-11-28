@@ -6,6 +6,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :phone
       t.string :password_hash
+      t.timestamps
     end
+    add_index(:users, [:email, :phone], unique: true)
   end
 end

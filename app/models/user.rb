@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
-  has_many :messages
+  has_many :exchanges
   has_many :crushes
   has_many :free_times
   has_many :authorizations
+
+  validates_uniqueness_of :email, :scope => :phone
 
   validates :first_name, :last_name, :email, :phone, :password_hash, :presence => true
   validates :email, :format => { :with => /.*@.*\..*/,

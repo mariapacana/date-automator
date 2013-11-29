@@ -132,10 +132,6 @@ task "console" do
 end
 
 desc "Run the specs"
-task :spec do
-  ENV['RACK_ENV'] = 'test'
+task :spec do 
   RSpec::Core::RakeTask.new(:spec)
-  task :default => :spec
 end
-
-

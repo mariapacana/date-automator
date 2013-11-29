@@ -28,13 +28,12 @@ class User < ActiveRecord::Base
     return user if user.password == user_info[:password]
   end
 
+  def enabled_google_oauth?
+    authorizations.find_by_auth_type("google") ? true : false
+  end
+
   def google_access_token
-    puts authorizations.find_by_auth_type("google")
-    if authorizations.find_by_auth_type("google")
-      authorizations.find_by_auth_type("google").access_token
-    else
-      nil
-    end
+    enabled_google_oauth? ? authorizations.find_by_auth_type("google").access_token : nil
   end
 
 end

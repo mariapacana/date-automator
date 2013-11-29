@@ -1,7 +1,6 @@
 require 'rake'
 require 'rspec/core/rake_task'
 
-
 require ::File.expand_path('../config/environment', __FILE__)
 
 # Include all of ActiveSupport's core class extensions, e.g., String#camelize
@@ -11,7 +10,7 @@ namespace :generate do
   desc "Create an empty model in app/models, e.g., rake generate:model NAME=User"
   task :model do
     unless ENV.has_key?('NAME')
-      raise "Must specificy model name, e.g., rake generate:model NAME=User"
+      raise "Must specify model name, e.g., rake generate:model NAME=User"
     end
 
     model_name     = ENV['NAME'].camelize
@@ -60,7 +59,7 @@ namespace :generate do
   desc "Create an empty model spec in spec, e.g., rake generate:spec NAME=user"
   task :spec do
     unless ENV.has_key?('NAME')
-      raise "Must specificy migration name, e.g., rake generate:spec NAME=user"
+      raise "Must specify migration name, e.g., rake generate:spec NAME=user"
     end
 
     name     = ENV['NAME'].camelize
@@ -86,20 +85,29 @@ namespace :generate do
 end
 
 namespace :db do
+
+  task :prepare do |task, args|
+    if (args.env == "test")
+      set :environment, :test
+      load "config/database.rb"
+      puts DB_NAME
+    end
+  end
+
   desc "Create the database at #{DB_NAME}"
-  task :create do
+  task :create, [:env] => :prepare do |task, args|
     puts "Creating database #{DB_NAME} if it doesn't exist..."
     exec("createdb #{DB_NAME}")
   end
 
   desc "Drop the database at #{DB_NAME}"
-  task :drop do
+  task :drop, [:env] => :prepare do |task, args|
     puts "Dropping database #{DB_NAME}..."
     exec("dropdb #{DB_NAME}")
   end
 
   desc "Migrate the database (options: VERSION=x, VERBOSE=false, SCOPE=blog)."
-  task :migrate do
+  task :migrate, [:env] => :prepare do |task, args|
     ActiveRecord::Migrator.migrations_paths << File.dirname(__FILE__) + 'db/migrate'
     ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
     ActiveRecord::Migrator.migrate(ActiveRecord::Migrator.migrations_paths, ENV["VERSION"] ? ENV["VERSION"].to_i : nil) do |migration|
@@ -124,6 +132,10 @@ task "console" do
 end
 
 desc "Run the specs"
-RSpec::Core::RakeTask.new(:spec)
+task :spec do
+  ENV['RACK_ENV'] = 'test'
+  RSpec::Core::RakeTask.new(:spec)
+  task :default => :spec
+end
 
-task :default  => :specs
+

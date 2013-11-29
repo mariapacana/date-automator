@@ -2,11 +2,17 @@ require 'spec_helper'
 
 describe User do
 
-  let!(:user) { User.create(first_name: "Maria",
-                         last_name: "Pacana",
-                         email: "maria@pacana.org",
-                         phone_number: "+17776667777",
-                         password: "bear") }
+  let(:user) { User.create(first_name: "Maria",
+                             last_name: "Pacana",
+                             email: "maria@pacana.org",
+                             phone_number: "+17776667777",
+                             password: "bear") }
+  let(:access_token) { "XXXXX"}
+
+  before(:all) do
+    user.authorizations.create(auth_type: "google",
+                               access_token: access_token)
+  end
 
   describe "#initialize" do  
     it { should have_many(:exchanges) }
@@ -23,7 +29,6 @@ describe User do
     context "with valid phone number" do
       it "is fine" do
         user.should be_valid
-        puts user.errors
       end
     end
 
@@ -37,10 +42,22 @@ describe User do
 
   describe ".authenticate" do
     it "lets valid users log in" do
-      logged_in_user = User.authenticate({email: "maria@pacana.org",
-                                          password: "bear" })
-      puts logged_in_user
+      logged_in_user = User.authenticate({email: "maria@pacana.org", password: "bear" })
       logged_in_user.should eq(user)
     end
+  end
+
+  describe "#enabled_google_oauth?" do
+    it "tells you if a user has a google authorization" do
+      expect(user.enabled_google_oauth?).to be_true
+    end
+
+    it "gives you back the access token" do
+      expect(user.google_access_token).to eq(access_token)
+    end
+  end
+
+  after(:all) do
+    User.destroy_all
   end
 end

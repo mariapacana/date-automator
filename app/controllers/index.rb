@@ -7,6 +7,7 @@ get '/oauth_google' do
 end
 
 get '/all_contacts' do
+  refresh_access_token_if_needed(currentuser)
   @contacts = import_contacts(currentuser)
   @contacts.to_json
 end
@@ -14,6 +15,10 @@ end
 get '/opt_out_google' do
   currentuser.disable_google
   "200 OK"
+end
+
+get '/refresh' do
+  refresh_access_token(currentuser)
 end
 
 get '/get_photo' do

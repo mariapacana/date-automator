@@ -11,7 +11,9 @@ describe User do
 
   before(:all) do
     user.authorizations.create(auth_type: "google",
-                               access_token: access_token)
+                               access_token: access_token,
+                               created_at: 2.hours.ago,
+                               updated_at: 2.hours.ago)
   end
 
   describe "#initialize" do  
@@ -62,6 +64,19 @@ describe User do
 
     it "gives you back the access token" do
       expect(user.google_access_token).to eq(access_token)
+    end
+  end
+
+  describe "#google_access_token_outdated?" do
+    it "tells you when the access token is outdated" do
+      expect(user.google_access_token_outdated?).to be_true
+    end
+  end
+
+  describe "#update_google_access_token" do
+    it "updates access tokens" do
+      user.update_google_access_token("hey")
+      expect(user.google_access_token).to eq("hey")
     end
   end
 

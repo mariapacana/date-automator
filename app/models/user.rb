@@ -39,11 +39,27 @@ class User < ActiveRecord::Base
   end
 
   def enabled_google_oauth?
-    authorizations.find_by_auth_type("google") ? true : false
+    google_authorization ? true : false
+  end
+
+  def google_authorization
+    authorizations.find_by_auth_type("google")
   end
 
   def google_access_token
-    enabled_google_oauth? ? authorizations.find_by_auth_type("google").access_token : nil
+    enabled_google_oauth? ? google_authorization.access_token : nil
+  end
+
+  def google_refresh_token
+    enabled_google_oauth? ? google_authorization.refresh_token : nil
+  end
+
+  def google_access_token_outdated?
+    google_authorization.updated_at < 1.hour.ago
+  end
+
+  def update_google_access_token(new_token)  
+    google_authorization.update_attributes(access_token: new_token)
   end
 
 end

@@ -1,5 +1,9 @@
 <div class="main">
 
+  <% if !currentuser.google_opt_out && !currentuser.enabled_google_oauth? %>
+    <%= erb :_g_oauth %>
+  <% end %>
+
   <div id="new_date_div">
     <h2>ADD TIMES</h2>
 

@@ -7,22 +7,25 @@ get '/oauth_google' do
 end
 
 get '/all_contacts' do
-  puts "ALL CONTACTS"
   @contacts = import_contacts(currentuser)
   @contacts.to_json
 end
 
+get '/opt_out_google' do
+  currentuser.disable_google
+  "200 OK"
+end
+
 get '/get_photo' do
-  # puts "GETTING PHOTO ========="
-  parser = ContactParser.new(currentuser) 
+  parser = ContactParser.new(currentuser)
+  binding.pry 
   @photo = parser.photo_req(params[:id])
   if @photo != "404" && @photo != "530"
-    # puts "PHOTO COMING UP"
-    # puts "#{params[:first_name]} #{params[:last_name]}"
-    @last_name = params[:last_name]
-    @first_name = params[:first_name]
-    @id = params[:id]
-    @phone = params[:phone]
+    
+    # @last_name = params[:last_name]
+    # @first_name = params[:first_name]
+    # @id = params[:id]
+    # @phone = params[:phone]
     erb :_contact, {:layout => false}
   else
     "Error"

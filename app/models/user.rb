@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def enabled_google_oauth?
-    authorizations.find_by_auth_type("google") ? true : false
+  def disable_google
+    self.update_attributes(google_opt_out: true) if self.google_opt_out.nil?
   end
 
   def enabled_google_oauth?

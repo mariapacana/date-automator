@@ -48,6 +48,13 @@ describe User do
     end
   end
 
+  describe "#opts_out_of_google_oauth?" do
+    it "is set when a user opts out of google oauth" do
+      user.disable_google
+      expect(user.google_opt_out).to be_true
+    end
+  end
+
   describe "#enabled_google_oauth?" do
     it "tells you if a user has a google authorization" do
       expect(user.enabled_google_oauth?).to be_true

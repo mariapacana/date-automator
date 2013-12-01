@@ -17,11 +17,12 @@ $(document).ready(function() {
 
   var processContacts = function(contacts) {
     $.each(contacts, function(index, contact) {
-      var contactData = {};
-      contactData['id'] = contact.id;
-      contactData['first_name'] = contact.first_name;
-      contactData['last_name'] = contact.last_name;
-      contactData['phone'] = contact.phone;
+      var contactData = {
+        id: contact.id,
+        first_name: contact.first_name,
+        last_name: contact.last_name,
+        phone: contact.phone
+      };
       getContactPhoto(contactData);
     });
   }

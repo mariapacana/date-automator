@@ -1,4 +1,9 @@
 <div id="crush_main" class="main">
+  
+  <% if !currentuser.google_opt_out && !currentuser.enabled_google_oauth? %>
+    <%= erb :_g_oauth %>
+  <% end %>
+
   <div id="new_crush_div">
     <h2>ADD CRUSHES</h2>
 

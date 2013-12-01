@@ -21,14 +21,4 @@ helpers do
     twiml.text
   end
 
-  def standardize_phone(phone)
-    phone.gsub!(/(\D)/,"")
-    if phone.length == 11
-      phone.insert(0, '+')
-    elsif phone.length == 10
-      phone.insert(0, '+1') 
-    end
-    phone
-  end
-
 end

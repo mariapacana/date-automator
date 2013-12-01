@@ -25,7 +25,13 @@ class User < ActiveRecord::Base
 
   def self.authenticate(user_info)
     user = User.find_by_email(user_info[:email])
-    return user if user.password == user_info[:password]
+    if user.nil? 
+      "Please sign up."
+    elsif user.password != user_info[:password]
+      "Your password is incorrect"
+    else
+      user
+    end
   end
 
   def enabled_google_oauth?

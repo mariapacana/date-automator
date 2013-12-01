@@ -89,3 +89,8 @@ input[type=submit]:hover, button:hover {
 .about p {
   font-size: 150%;
 }
+
+.errors ul li{
+  list-style-type: none;
+  color: #FF1493;
+}

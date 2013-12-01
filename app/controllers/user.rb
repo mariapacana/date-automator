@@ -1,20 +1,20 @@
 post '/login' do
-  userinfo = params[:user]
-  @errors = []
-
-  if userinfo[:email].blank? || userinfo[:password].blank?
-    @errors << "Email cannot be blank" if userinfo[:email].blank?
-    @errors << "Password cannot be blank" if userinfo[:password].blank?
+  user_info = params[:user]
+  
+  if !errors(user_info).empty?
+    @login_errors = errors(user_info)
   else
     user = User.authenticate(params[:user])
-    session[:user_id] = user.id if user
+    session[:user_id] = user.id if user.is_a? User
+    @login_errors = [user]
   end
 
   erb :index
 end
 
 post '/signup' do
-  user = User.create(params[:user])
+  user_info = process_signup(params[:user])
+  user = User.create(user_info)
   @errors = user.errors.full_messages
   session[:user_id] = user.id if user
 

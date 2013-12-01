@@ -34,10 +34,11 @@ describe User do
 
     context "with invalid phone number" do
       it "throws an argument error" do
-        user.update_attributes(phone_number: "666-777-6666")
+        user.update_attributes(phone_number: "6asdf6")
         user.should_not be_valid
       end
     end
+
   end
 
   describe ".authenticate" do

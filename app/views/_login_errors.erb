@@ -1,0 +1,9 @@
+<div class="errors">
+  <% if @login_errors %>
+    <ul>
+      <% @login_errors.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

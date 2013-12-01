@@ -38,6 +38,10 @@ class User < ActiveRecord::Base
     authorizations.find_by_auth_type("google") ? true : false
   end
 
+  def enabled_google_oauth?
+    authorizations.find_by_auth_type("google") ? true : false
+  end
+
   def google_access_token
     enabled_google_oauth? ? authorizations.find_by_auth_type("google").access_token : nil
   end

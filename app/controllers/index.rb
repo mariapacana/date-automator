@@ -17,20 +17,12 @@ get '/opt_out_google' do
   "200 OK"
 end
 
-get '/refresh' do
-  refresh_access_token(currentuser)
-end
-
 get '/get_photo' do
   parser = ContactParser.new(currentuser)
-  binding.pry 
-  @photo = parser.photo_req(params[:id])
-  if @photo != "404" && @photo != "530"
-    
-    # @last_name = params[:last_name]
-    # @first_name = params[:first_name]
-    # @id = params[:id]
-    # @phone = params[:phone]
+  @contact = params 
+  photo = parser.photo_req(@contact[:id])
+  if photo != "404" && photo != "530"
+    @contact[:photo] = photo
     erb :_contact, {:layout => false}
   else
     "Error"
@@ -47,9 +39,9 @@ end
 
 post '/crushes' do
   hello = "Hi there! Are you interested in #{currentuser.first_name}?"
+  exchange = Exchange.new(user, crush)
   params.each do |index, crush|
     standardize_phone(crush["phone"])
-    crush.pry
     send_sms(ENV['TW_PHONE'], crush["phone"], hello)
     @new_crush = currentuser.crushes.create(crush)
   end
@@ -60,7 +52,6 @@ post '/crushes' do
 end
 
 post '/receive' do
-  puts "RECEIVED======================================"
   @crush_phone = params[:From]
   @message =  params[:Body]
 
@@ -84,7 +75,6 @@ get '/about' do
 end
 
 post '/schedule' do 
-  p params
   params.each do |index, freetime|
     start_time = start_time(freetime[:free_date], freetime[:start_time])
     currentuser.free_times.create(start_time: start_time)

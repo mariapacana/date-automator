@@ -38,15 +38,15 @@ get '/crushes' do
 end
 
 post '/crushes' do
-  hello = "Hi there! Are you interested in #{currentuser.first_name}?"
-  exchange = Exchange.new(user, crush)
   params.each do |index, crush|
-    standardize_phone(crush["phone"])
-    send_sms(ENV['TW_PHONE'], crush["phone"], hello)
+    #Check that the phone thing still works.
+    #Send the first text and toggle the crush's status.
+    phone = Phone.create(standardize_phone(crush["phone"]))
     @new_crush = currentuser.crushes.create(crush)
+    send_sms(ENV['TW_PHONE'], @new_crush.phone.phone_number, 
+                              @new_crush.exchanges.first.request_text)
   end
 
-  currentuser.crushes
   @crushes = currentuser.crushes
   erb :_all_crushes, {:layout => false}
 end

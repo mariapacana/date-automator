@@ -7,7 +7,7 @@ class Crush < ActiveRecord::Base
   validates_uniqueness_of :phone_id, :scope => :user_id
   validate :status_must_be_valid
 
-  VALID_STATUS = ["not contacted", "contacted", "date scheduled"]
+  VALID_STATUS = ["not contacted", "contacted", "not interested", "date scheduled"]
 
   def status_must_be_valid
     errors.add(:status, "must be valid") if !VALID_STATUS.include?(status)

@@ -13,10 +13,11 @@ Completed:
   * ...by clicking on Google Contacts
   * ...by manually entering in a crush's information
 * Crushes are saved into the database
-
-Not Complete:
 * Twilio messages all crushes on behalf of Date Automator, asking if they would like to date [user]
   * An 'exchange' is created, and this message is saved in the 'request_text' attribute of the exchange
+  * Exchanges have unique PIN numbers associated with them. Every time a new exchange is begun with the same phone number, the PIN number is incremented.
+
+Not Complete:
 * Twilio gets messages in response to 'Would you date [user]?'
   * The previous 'exchange' is updated; now 'response_text' is modified with the crush's response
   * If the crush is not interested, 'interested?' attribute is set to false, and they are never messaged again

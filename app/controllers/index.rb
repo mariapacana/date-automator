@@ -39,14 +39,15 @@ end
 
 post '/crushes' do
   params.each do |index, crush|
-    #Check that the phone thing still works.
-    #Send the first text and toggle the crush's status.
-    phone = Phone.create(standardize_phone(crush["phone"]))
+    phone = Phone.create(phone_number: standardize_phone(crush["phone"]))
+    crush["phone"] = phone
+    crush["status"] = "not contacted"
     @new_crush = currentuser.crushes.create(crush)
+    exchange = Exchange.create(user: currentuser, phone: phone)
+    @new_crush.update_attributes(status: "contacted")
     send_sms(ENV['TW_PHONE'], @new_crush.phone.phone_number, 
-                              @new_crush.exchanges.first.request_text)
+                              exchange.request_text)
   end
-
   @crushes = currentuser.crushes
   erb :_all_crushes, {:layout => false}
 end

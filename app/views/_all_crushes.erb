@@ -6,15 +6,13 @@
       <th>Last Name</th>
       <th>Phone</th>
       <th>Status</th>
-      <th>Date Scheduled</th>
     </tr>
     <% @crushes.each do |crush|%>
     <tr>
       <td><%= crush.first_name %></td>
       <td><%= crush.last_name %></td>
-      <td><%= crush.phone %></td>
+      <td><%= crush.phone.phone_number %></td>
       <td><%= crush.status %></td>
-      <td><%= crush.date_scheduled %></td>
     </tr> 
     <% end %>
   </table>

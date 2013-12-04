@@ -54,10 +54,23 @@ end
 
 post '/receive' do
   response_text, pin = params[:Body].split(" ")
-  phone = params[:From]
-  phone = Phone.find_by_phone_number(phone)
-  exchange = Exchange.find_by_pin_and_phone_id(pin, phone.id)
-  exchange.update_attributes(response_text: response_text)
+
+  if pin
+    phone = params[:From]
+    phone = Phone.find_by_phone_number(phone)
+    exchange = Exchange.find_by_pin_and_phone_id(pin, phone.id)
+    exchange.update_attributes(response_text: response_text)
+    case response_text
+    when "Yes" 
+      exchange.crush.update_attributes(status: "interested")
+      new_exchange = Exchange.create(user: exchange.user, phone: phone)
+      send_sms(ENV['TW_PHONE'], phone.phone_number, new_exchange.request_text)
+    else
+      puts "UGH================================="
+      # exchange.crush.update_attributes(status: "not interested")
+    # end
+    end 
+  end
 end
  
 get '/schedule' do

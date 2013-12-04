@@ -27,7 +27,7 @@ helpers do
   end
 
   def refresh_access_token_if_needed(currentuser)
-    refresh_access_token if currentuser.google_access_token_outdated?
+    refresh_access_token(currentuser) if currentuser.google_access_token_outdated?
   end
 
   def refresh_access_token(currentuser)

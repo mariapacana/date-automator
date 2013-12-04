@@ -34,6 +34,7 @@ class ContactParser
 
   def get_contacts
     info = contact_req
+    binding.pry
     @contact_list = JSON.parse(info)["feed"]["entry"]
   end
 

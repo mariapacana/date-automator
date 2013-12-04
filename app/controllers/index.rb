@@ -53,17 +53,11 @@ post '/crushes' do
 end
 
 post '/receive' do
-  @crush_phone = params[:From]
-  @message =  params[:Body]
-
-  if @crush = Crush.find_by_phone(@crush_phone)
-    if (@message == "Yes")
-      @crush.update_attributes(status: "interested")
-    else
-      @crush.update_attributes(status: "not interested")
-    end
-  end
-
+  response_text, pin = params[:Body].split(" ")
+  phone = params[:From]
+  phone = Phone.find_by_phone_number(phone)
+  exchange = Exchange.find_by_pin_and_phone_id(pin, phone.id)
+  exchange.update_attributes(response_text: response_text)
 end
  
 get '/schedule' do

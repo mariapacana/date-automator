@@ -3,6 +3,7 @@ class Exchange < ActiveRecord::Base
   belongs_to :phone
 
   before_create :set_pin_and_text
+  before_update :send_new_message
 
   def set_pin_and_text
     set_pin
@@ -27,7 +28,17 @@ class Exchange < ActiveRecord::Base
     when "not contacted"
       self.request_text = "Hello! Are you interested in #{self.user_name}? Text Yes #{self.pin} or No #{self.pin} to respond."
     else
-      self.request_text = "Still working on it."
+      self.request_text = "Yeah, you like me, don't you!"
     end
   end
+
+  def send_new_message
+    case request_text 
+    when "Yes"
+      crush.update_attributes(status: "interested")
+      Exchange.create(user: self.user, phone: self.phone)
+    else
+      crush.update_attributes(status: "not interested")
+    end
+  end 
 end

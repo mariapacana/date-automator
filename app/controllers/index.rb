@@ -90,3 +90,7 @@ post '/schedule' do
   @times = currentuser.free_times
   erb :_all_free_dates, {:layout => false}
 end
+
+get '/get_gcal' do
+  get_future_dates(currentuser)
+end

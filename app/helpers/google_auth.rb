@@ -64,4 +64,20 @@ helpers do
     parser.get_formatted_contacts
   end
 
+  def get_future_dates(user)
+    client = initialize_client
+    refresh_access_token_if_needed(user)
+    client.authorization.access_token = user.google_access_token
+    service = client.discovered_api('calendar', 'v3')
+    start_time = gcal_format(Time.now)
+    end_time = gcal_format(Time.now + 6.months)
+    gcal_params = {"calendarId" => "primary",
+                   "timeMin" => start_time,
+                   "timeMax" => end_time,
+                   "singleEvents" => "true"}
+    result = client.execute(:api_method => service.events.list,
+                            :parameters => gcal_params)
+    dates = JSON.parse(result.body).fetch("items").select {|e| e['summary'].include?("datebot") }
+  end
+
 end
